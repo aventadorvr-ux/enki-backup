@@ -1,0 +1,24 @@
+# .gitignore for Enki backup
+# Dependencies
+node_modules/
+
+# Output files
+*.json
+!package.json
+*.log
+
+# Temporary files
+tmp/
+temp/
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+# Keep source files
+!js-fetch.js

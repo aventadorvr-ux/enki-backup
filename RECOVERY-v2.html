@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Enki Recovery Protocol - v2</title>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+h1 {
+  color: #dc2626;
+  text-align: center;
+  border-bottom: 3px solid #dc2626;
+  padding-bottom: 15px;
+}
+h2 {
+  color: #2563eb;
+  margin-top: 35px;
+  border-left: 5px solid #2563eb;
+  padding-left: 15px;
+}
+h3 {
+  color: #1e40af;
+  margin-top: 25px;
+}
+.warning {
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+}
+.info {
+  background: #dbeafe;
+  border-left: 5px solid #2563eb;
+  padding: 15px;
+  margin: 20px 0;
+}
+pre {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+code {
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 0.9em;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+th, td {
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  text-align: left;
+}
+th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+.step {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px 0;
+}
+.step-number {
+  display: inline-block;
+  background: #dc2626;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+hr {
+  border: none;
+  border-top: 2px solid #e5e7eb;
+  margin: 40px 0;
+}
+</style>
+</head>
+<body>
+
+<h1>🚨 Enki Recovery Protocol v2.0</h1>
+<div style="text-align: center; color: #6b7280; margin-bottom: 40px;">
+  <strong>Disaster Recovery Guide + Reconnection Procedures</strong><br>
+  Updated: 2026-03-04 | User: Adam Lewando
+</div>
+
+<div class="warning">
+  <strong>⚠️ KEEP THIS DOCUMENT SAFE OUTSIDE YOUR SERVER</strong><br>
+  If your server is destroyed, you'll need this to restore everything.
+</div>
+
+<hr>
+
+<h2>📋 PART 1: DISASTER RECOVERY (Complete Server Loss)</h2>
+
+<h3>Prerequisites</h3>
+<ul>
+  <li>New Ubuntu/Debian server (or fresh EC2 instance)</li>
+  <li>Internet connection</li>
+  <li>GitHub access (for cloning backup)</li>
+  <li>Telegram app (to reconnect with Enki)</li>
+</ul>
+
+<div class="step">
+  <span class="step-number">1</span>
+  <strong>Install OpenClaw</strong>
+  <pre><code>npm install -g openclaw
+openclaw --version</code></pre>
+</div>
+
+<div class="step">
+  <span class="step-number">2</span>
+  <strong>Clone Backup Repository</strong>
+  <pre><code>git clone https://github.com/aventadorvr-ux/enki-backup.git \
+  ~/.openclaw/workspace
+cd ~/.openclaw/workspace
+npm install</code></pre>
+</div>
+
+<div class="step">
+  <span class="step-number">3</span>
+  <strong>Install System Dependencies</strong>
+  <pre><code>sudo apt-get update
+sudo apt-get install -y chromium-browser fail2ban</code></pre>
+</div>
+
+<div class="step">
+  <span class="step-number">4</span>
+  <strong>Test JavaScript Scraper</strong>
+  <pre><code>node js-fetch.js "https://www.trademe.co.nz" test.json
+cat test.json | head -20
+rm test.json</code></pre>
+</div>
+
+<div class="step">
+  <span class="step-number">5</span>
+  <strong>Reconnect Telegram</strong>
+  <pre><code>openclaw pairing list
+openclaw pairing add telegram --label "Enki Restored"
+# Approve on your phone, then message the bot</code></pre>
+</div>
+
+<div class="step">
+  <span class="step-number">6</span>
+  <strong>Restore Security Hardening</strong>
+  <pre><code># Enable UFW Firewall
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 22/tcp comment 'SSH access'
+sudo ufw limit 22/tcp comment 'Rate limit SSH'
+sudo ufw enable
+
+# Harden SSH
+sudo tee /etc/ssh/sshd_config.d/hardening.conf << 'EOF'
+PasswordAuthentication no
+PermitRootLogin no
+X11Forwarding no
+MaxAuthTries 3
+AllowUsers ubuntu
+EOF
+sudo systemctl reload ssh
+
+# Start fail2ban
+sudo systemctl enable fail2ban
+sudo systemctl start fail2ban</code></pre>
+</div>
+
+<hr>
+
+<h2>🔌 PART 2: CONNECTION RECOVERY (OpenClaw/Telegram Issues)</h2>
+
+<div class="info">
+  <strong>Use Case:</strong> Connection lost due to token/credit issues, Telegram disconnect, or process failure.
+</div>
+
+<h3>When to Use This Guide</h3>
+<ul>
+  <li>Ran out of OpenRouter credits and topped up</li>
+  <li>Telegram connection lost</li>
+  <li>OpenClaw not responding to messages</li>
+  <li>Process crashed or was killed</li>
+</ul>
+
+<div class="step">
+  <span class="step-number">1</span>
+  <strong>SSH into EC2 Instance</strong>
+  <pre><code>ssh -i your-key.pem ubuntu@&lt;EC2_PUBLIC_IP&gt;</code></pre>
+</div>
+
+<div class="step">
+  <span class="step-number">2</span>
+  <strong>Check OpenClaw Process</strong>
+  <pre><code>ps aux | grep openclaw</code></pre>
+  <p>Observe PID for openclaw-gateway. Check disk space:</p>
+  <pre><code>df -h</code></pre>
+  <p><strong>Note:</strong> If disk is almost full, proceed to Step 3.</p>
+</div>
+
+<div class="step">
+  <span class="step-number">3</span>
+  <strong>Clear Disk Space (if needed)</strong>
+  <pre><code>sudo journalctl --vacuum-time=2d
+sudo apt clean
+npm cache clean --force</code></pre>
+  <p>Ensure at least ~1GB free space.</p>
+</div>
+
+<div class="step">
+  <span class="step-number">4</span>
+  <strong>Inspect OpenClaw Directory</strong>
+  <pre><code>cd ~/.openclaw
+ls -la</code></pre>
+  <p><strong>Key folders:</strong> telegram/, logs/, delivery-queue/, credentials/<br>
+  <strong>Key file:</strong> openclaw.json</p>
+</div>
+
+<div class="step">
+  <span class="step-number">5</span>
+  <strong>Stop Any Running OpenClaw Process</strong>
+  <pre><code>sudo kill &lt;PID&gt;</code></pre>
+</div>
+
+<div class="step">
+  <span class="step-number">6</span>
+  <strong>Backup and Reset Telegram Session</strong>
+  <pre><code>mv telegram telegram_backup</code></pre>
+</div>
+
+<div class="step">
+  <span class="step-number">7</span>
+  <strong>(Optional) Clear Stuck Delivery Queue</strong>
+  <pre><code>mv delivery-queue delivery-queue_backup
+mkdir delivery-queue</code></pre>
+</div>
+
+<div class="step">
+  <span class="step-number">8</span>
+  <strong>Restart OpenClaw</strong>
+  <pre><code>openclaw</code></pre>
+  <p>Look for startup message:</p>
+  <blockquote>"I'll do the boring stuff while you dramatically stare at the logs like it's cinema. OpenClaw 2026.2.26"</blockquote>
+</div>
+
+<div class="step">
+  <span class="step-number">9</span>
+  <strong>Approve Telegram Pairing</strong>
+  <p>A new pairing code will be printed in the logs.</p>
+  <pre><code>openclaw pairing approve telegram &lt;PAIRING_CODE&gt;</code></pre>
+  <p><strong>Test in Telegram:</strong> Send <code>/start</code></p>
+  <p>OpenClaw should respond → connection restored.</p>
+</div>
+
+<h3>⚠️ Critical Notes</h3>
+<ul>
+  <li><strong>Do NOT use</strong> <code>openclaw start</code> (unknown command)</li>
+  <li>Old Telegram session can break if OpenRouter credits run out</li>
+  <li>Disk space must remain adequate for logs and session storage</li>
+  <li>Recommended: Monitor EC2 disk usage regularly</li>
+  <li>Optional: Use PM2 or Docker for auto-restart</li>
+</ul>
+
+<hr>
+
+<h2>✅ VERIFICATION CHECKLIST</h2>
+
+<p>After any restore or reconnection:</p>
+
+<ul style="list-style: none;">
+  <li>☐ OpenClaw installed and responding</li>
+  <li>☐ js-fetch.js works on test URL</li>
+  <li>☐ Can message Enki via Telegram</li>
+  <li>☐ All memory files present</li>
+  <li>☐ Cron jobs scheduled</li>
+  <li>☐ Firewall active (sudo ufw status)</li>
+  <li>☐ Fail2ban running (sudo systemctl status fail2ban)</li>
+  <li>☐ Git push works (optional)</li>
+</ul>
+
+<hr>
+
+<h2>📞 EMERGENCY CONTACTS</h2>
+
+<table>
+  <tr>
+    <th>Resource</th>
+    <th>URL</th>
+  </tr>
+  <tr>
+    <td>Backup Repository</td>
+    <td>https://github.com/aventadorvr-ux/enki-backup</td>
+  </tr>
+  <tr>
+    <td>OpenClaw Docs</td>
+    <td>https://docs.openclaw.ai</td>
+  </tr>
+  <tr>
+    <td>OpenRouter Credits</td>
+    <td>https://openrouter.ai/settings/credits</td>
+  </tr>
+  <tr>
+    <td>GitHub Token</td>
+    <td>https://github.com/settings/tokens</td>
+  </tr>
+  <tr>
+    <td>AWS Console</td>
+    <td>https://console.aws.amazon.com</td>
+  </tr>
+</table>
+
+<div class="info" style="margin-top: 40px;">
+  <strong>Document Version:</strong> 2.0<br>
+  <strong>Last Updated:</strong> 2026-03-04<br>
+  <strong>Backup Status:</strong> ACTIVE (auto-every 6 hours)<br>
+  <strong>Auto-Backup:</strong> GitHub (private repo)
+</div>
+
+<div class="warning" style="margin-top: 40px;">
+  <strong>Remember:</strong> Keep this PDF outside your server! 
+  Download it, email it to yourself, save to cloud storage.
+</div>
+
+</body>
+</html>
