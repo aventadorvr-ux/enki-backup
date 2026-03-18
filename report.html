@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ARCHITECTURE</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<p>│ ├── services/ # Shared services │ │ ├── llm/ │ │ ├── memory/ │ │
+├── vector/ │ │ ├── scrapers/ │ │ └── integrations/ │ │ │ ├── shared/ #
+Shared utilities │ │ ├── types/ │ │ ├── constants/ │ │ ├── utils/ │ │
+└── errors/ │ │ │ └── workers/ # Background jobs │ ├── queue.ts │ └──
+processors/ │ ├── config/ # Configuration │ ├── database.ts │ ├──
+redis.ts │ ├── llm.ts │ └── agents.ts │ ├── docs/ # Documentation │ ├──
+api.md │ ├── agents.md │ ├── integrations.md │ └── deployment.md │ ├──
+tests/ # Test suites │ ├── unit/ │ ├── integration/ │ └── e2e/ │ ├──
+scripts/ # Utility scripts │ ├── migrate.sh │ ├── seed.sh │ └──
+deploy.sh │ ├── docker-compose.yml ├── Dockerfile ├── package.json ├──
+tsconfig.json └── README.md ```</p>
+<hr />
+<h2 id="key-design-decisions-trade-offs">7. Key Design Decisions &amp;
+Trade-offs</h2>
+<h3 id="why-node.jsnestjs-over-python">7.1 Why Node.js/NestJS over
+Python?</h3>
+<p><strong>Node.js chosen because:</strong> - Single language across
+stack (TypeScript everywhere) - Better async/concurrent request handling
+for I/O-bound workloads - Native GraphQL support via Apollo - Large
+ecosystem for real-time applications</p>
+<p><strong>Trade-off</strong>: Python has better ML libraries, but we
+can call Python microservices for specific ML tasks if needed.</p>
+<h3 id="why-graphql-over-rest">7.2 Why GraphQL over REST?</h3>
+<p><strong>GraphQL chosen because:</strong> - Mobile and web clients
+need different data shapes - Real-time subscriptions built-in - Strong
+typing reduces bugs - Single endpoint simplifies architecture</p>
+<p><strong>Trade-off</strong>: Caching is more complex; we’ll use
+persisted queries and DataLoader pattern.</p>
+<h3 id="multi-tenancy-approach">7.3 Multi-tenancy Approach</h3>
+<p><strong>Hybrid strategy:</strong> - Start with row-level security
+(simplest, cost-effective) - Migrate enterprise clients to
+schema-per-tenant as needed - This balances cost and isolation
+requirements</p>
+<h3 id="agent-coordination">7.4 Agent Coordination</h3>
+<p><strong>Event-driven vs Direct API calls:</strong> - Event-driven
+chosen for loose coupling and scalability - Each agent can be deployed
+independently - Easier to add new agents without modifying existing
+ones</p>
+<h3 id="llm-strategy">7.5 LLM Strategy</h3>
+<p><strong>Multi-provider approach:</strong> - GPT-4o for complex
+reasoning tasks - Claude for long-form content generation - GPT-4o-mini
+for high-volume, simple tasks - This optimizes cost/quality balance</p>
+<hr />
+<h2 id="security-compliance">8. Security &amp; Compliance</h2>
+<h3 id="nz-specific-requirements">8.1 NZ-Specific Requirements</h3>
+<ul>
+<li><strong>Privacy Act 2020</strong>: Data retention limits, access
+controls</li>
+<li><strong>REAA 2008</strong>: Agent licensing verification, audit
+trails</li>
+<li><strong>Anti-money laundering</strong>: Customer due diligence
+workflows</li>
+</ul>
+<h3 id="technical-measures">8.2 Technical Measures</h3>
+<ul>
+<li>End-to-end encryption for sensitive data</li>
+<li>Field-level encryption for PII</li>
+<li>Audit logging for all agent decisions</li>
+<li>Regular penetration testing</li>
+</ul>
+<hr />
+<h2 id="scaling-strategy">9. Scaling Strategy</h2>
+<h3 id="phase-1-0-500-agents">Phase 1 (0-500 agents)</h3>
+<ul>
+<li>Single deployment, managed PostgreSQL/Redis</li>
+<li>All agents in one process</li>
+<li>Cost: ~$500/month infrastructure</li>
+</ul>
+<h3 id="phase-2-500-5000-agents">Phase 2 (500-5,000 agents)</h3>
+<ul>
+<li>Agent workers scale independently</li>
+<li>Read replicas for database</li>
+<li>CDN for static assets</li>
+<li>Cost: ~$2,000/month</li>
+</ul>
+<h3 id="phase-3-5000-agents">Phase 3 (5,000+ agents)</h3>
+<ul>
+<li>Schema-per-tenant for enterprise</li>
+<li>Regional deployments (AU/NZ)</li>
+<li>Dedicated ML inference cluster</li>
+<li>Cost: ~$10,000+/month</li>
+</ul>
+<hr />
+<h2 id="development-roadmap">10. Development Roadmap</h2>
+<h3 id="sprint-1-2-foundation">Sprint 1-2: Foundation</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Database schema +
+migrations</label></li>
+<li><label><input type="checkbox" />API skeleton (GraphQL)</label></li>
+<li><label><input type="checkbox" />Auth integration
+(Clerk)</label></li>
+<li><label><input type="checkbox" />Base agent framework</label></li>
+</ul>
+<h3 id="sprint-3-4-lead-agent-mvp">Sprint 3-4: Lead Agent MVP</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Intent classification</label></li>
+<li><label><input type="checkbox" />Lead qualification flow</label></li>
+<li><label><input type="checkbox" />CRM connector
+(AgentBox)</label></li>
+<li><label><input type="checkbox" />WhatsApp integration</label></li>
+</ul>
+<h3 id="sprint-5-6-content-agent-mvp">Sprint 5-6: Content Agent MVP</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Property description
+generator</label></li>
+<li><label><input type="checkbox" />SEO optimization</label></li>
+<li><label><input type="checkbox" />Image analysis</label></li>
+<li><label><input type="checkbox" />Social post templates</label></li>
+</ul>
+<h3 id="sprint-7-8-scheduling-transaction">Sprint 7-8: Scheduling &amp;
+Transaction</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Calendar integration</label></li>
+<li><label><input type="checkbox" />Inspection booking</label></li>
+<li><label><input type="checkbox" />Transaction pipeline</label></li>
+<li><label><input type="checkbox" />Document templates</label></li>
+</ul>
+<h3 id="sprint-9-10-market-intelligence">Sprint 9-10: Market
+Intelligence</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />TradeMe scraper</label></li>
+<li><label><input type="checkbox" />CMA generation</label></li>
+<li><label><input type="checkbox" />Price alerts</label></li>
+<li><label><input type="checkbox" />Market reports</label></li>
+</ul>
+<hr />
+<h2 id="appendix-nz-real-estate-context">Appendix: NZ Real Estate
+Context</h2>
+<h3 id="key-terms">Key Terms</h3>
+<ul>
+<li><strong>LIM</strong>: Land Information Memorandum (council
+records)</li>
+<li><strong>S&amp;P</strong>: Sale and Purchase Agreement</li>
+<li><strong>REINZ</strong>: Real Estate Institute of New Zealand</li>
+<li><strong>REAA</strong>: Real Estate Agents Authority</li>
+<li><strong>Open Home</strong>: Scheduled property viewing</li>
+<li><strong>Tender</strong>: Closed bidding process</li>
+<li><strong>Auction</strong>: Public bidding process (very common in
+NZ)</li>
+<li><strong>Settlement</strong>: Closing/completion date</li>
+<li><strong>Conditions</strong>: Finance, building report, LIM,
+valuation</li>
+</ul>
+<h3 id="regional-variations">Regional Variations</h3>
+<ul>
+<li>Auckland: Fastest market, auctions common</li>
+<li>Wellington: Government influence, steady market</li>
+<li>Christchurch: Post-quake rebuild focus</li>
+<li>Regional NZ: Longer sales cycles, more conditional offers</li>
+</ul>
+</body>
+</html>
