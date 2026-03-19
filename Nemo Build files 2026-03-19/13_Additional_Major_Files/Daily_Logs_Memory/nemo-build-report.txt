@@ -1,0 +1,281 @@
+================================================================================
+                    NEMO BUILD REPORT - NZ REAL ESTATE AI SYSTEM
+                         Complete Build Documentation & A Records
+================================================================================
+
+Generated: 2026-03-19 05:01 UTC
+Builder: Nemo (Claude Code sub-agent)
+Target: AWS EC2 Instance
+Repository: https://github.com/aventadorvr-ux/enki-backup
+
+================================================================================
+                           INFRASTRUCTURE & A RECORDS
+================================================================================
+
+EC2 INSTANCE DETAILS
+--------------------
+Public IP:        3.25.170.226
+Private IP:       172.31.35.97
+Hostname:         ip-172-31-35-97.ap-southeast-2.compute.internal
+Region:           ap-southeast-2 (Sydney)
+Instance Type:    t3.medium (inferred)
+OS:               Ubuntu 24.04 LTS (x86_64)
+Kernel:           6.17.0-1007-aws
+
+DNS CONFIGURATION
+-----------------
+Search Domain:    ap-southeast-2.compute.internal
+Nameserver:       127.0.0.53 (systemd-resolved)
+
+NETWORK INTERFACES
+------------------
+Interface    IP Address        MAC Address
+---------    ----------        -----------
+lo           127.0.0.1         00:00:00:00:00:00
+enp39s0      172.31.35.97/20   06:4b:4d:96:d2:df
+
+OPEN PORTS (LISTENING SERVICES)
+-------------------------------
+Port     Protocol    Service           Process
+----     --------    -------           -------
+22       TCP         SSH               sshd
+53       TCP         DNS               systemd-resolve
+3000     TCP         HTTP (Frontend)   python3
+8000     TCP         HTTP API          uvicorn
+
+================================================================================
+                            SYSTEM SPECIFICATIONS
+================================================================================
+
+Resource          Total        Used        Available
+--------          -----        ----        ---------
+Memory            7.6 GB       606 MB      7.0 GB
+Disk (/)          96 GB        3.2 GB      93 GB (4%)
+Swap              0 B          0 B         0 B
+Load Average      0.00         0.00        0.00
+Uptime            5 hours 36 minutes
+
+================================================================================
+                            APPLICATION STACK
+================================================================================
+
+Project:          NZ Real Estate AI
+Location:         /home/ubuntu/nz-realestate-ai
+Git Commit:       98400f4 (Initial commit: 5-agent architecture)
+Virtual Env:      Python 3.12 venv
+
+TECHNOLOGY STACK
+----------------
+Component              Version        Purpose
+---------              -------        -------
+Python                 3.12           Runtime
+FastAPI                0.109.0        Web framework
+Uvicorn                0.27.0         ASGI server
+Pydantic               2.6.0          Data validation
+SQLAlchemy             2.0.48         ORM
+Redis                  5.0.1          Cache/Queue
+Celery                 5.3.6          Task queue
+pytest                 8.0.0          Testing
+python-jose            3.3.0          JWT tokens
+passlib                1.7.4          Password hashing
+aioredis               2.0.1          Async Redis
+structlog              24.1.0         Structured logging
+httpx                  0.26.0         HTTP client
+requests               2.32.5         HTTP client
+openai                 2.29.0         OpenAI API
+
+AI/LLM INTEGRATION
+------------------
+- OpenRouter API: Configured
+- OpenAI API: Configured
+- Default Model: anthropic/claude-3.5-sonnet (via OpenRouter)
+
+================================================================================
+                            5-AGENT ARCHITECTURE
+================================================================================
+
+AGENT 1: LEAD AGENT (lead)
+--------------------------
+Purpose: Lead qualification and routing
+File: app/agents/lead_agent.py
+
+Actions:
+  - qualify         Rule-based lead scoring
+  - qualify_ai      AI-powered lead analysis via OpenRouter
+  - respond         Automated response templates
+  - route           Route to available agents
+
+Scoring Logic:
+  Budget > $500k:                    +30 points
+  Timeline (immediate/1-3mo):        +40 points
+  Pre-approved:                      +20 points
+  Contact method:                    +10 points
+  Qualified (>=60 points):           YES
+  High Priority (>=80 points):       YES
+
+------------------------------------------------------------------------------
+
+AGENT 2: CONTENT AGENT (content)
+--------------------------------
+Purpose: Property descriptions and marketing
+File: app/agents/content_agent.py
+
+Actions:
+  - description     Generate basic property descriptions
+  - description_ai  AI-generated compelling descriptions
+  - social          Platform-specific social posts
+  - social_ai       AI-optimized social content
+  - email           Email campaign generation
+
+------------------------------------------------------------------------------
+
+AGENT 3: SCHEDULING AGENT (scheduling)
+--------------------------------------
+Purpose: Calendar management and bookings
+File: app/agents/scheduling_agent.py
+
+Actions:
+  - book_showing    Schedule property showings
+  - inspection      Schedule building inspections
+  - availability    Check agent availability
+
+------------------------------------------------------------------------------
+
+AGENT 4: MARKET INTELLIGENCE AGENT (market_intel)
+-------------------------------------------------
+Purpose: CMAs and competitor tracking
+File: app/agents/market_agent.py
+
+Actions:
+  - cma             Generate Comparative Market Analysis
+  - track_competitor Monitor competitor activity
+  - trends          Analyze market trends
+
+------------------------------------------------------------------------------
+
+AGENT 5: TRANSACTION COORDINATOR (transaction)
+----------------------------------------------
+Purpose: Deal coordination and compliance
+File: app/agents/transaction_agent.py
+
+Actions:
+  - track_deadline  Monitor transaction deadlines
+  - checklist       Generate deal checklists
+  - compliance      Check regulatory compliance
+
+================================================================================
+                              API ENDPOINTS
+================================================================================
+
+Base URL: http://3.25.170.226:8000
+
+ENDPOINTS
+---------
+Method    Endpoint                           Description
+------    --------                           -----------
+GET       /                                  API info
+GET       /health                            Health check
+GET       /docs                              Swagger UI docs
+GET       /api/v1/agents                     List all agents
+POST      /api/v1/agents/{agent}/process     Send task to agent
+
+EXAMPLE REQUESTS
+----------------
+
+Health Check:
+  curl http://3.25.170.226:8000/health
+
+List Agents:
+  curl http://3.25.170.226:8000/api/v1/agents
+
+Qualify Lead:
+  curl -X POST http://3.25.170.226:8000/api/v1/agents/lead/process \
+    -H "Content-Type: application/json" \
+    -d '{"action": "qualify", "data": {"budget": 900000, "timeline": "immediate", "pre_approved": true}}'
+
+Generate Property Description:
+  curl -X POST http://3.25.170.226:8000/api/v1/agents/content/process \
+    -H "Content-Type: application/json" \
+    -d '{"action": "description", "data": {"bedrooms": 3, "bathrooms": 2, "location": "Auckland CBD"}}'
+
+================================================================================
+                              SYSTEM STATUS
+================================================================================
+
+Backend API
+-----------
+Status:        [OK] Healthy
+Uptime:        5+ hours
+Process:       Uvicorn (PID 9216)
+Port:          8000 (0.0.0.0)
+Health:        {"status": "healthy"}
+
+Frontend Server
+---------------
+Status:        [OK] Running
+Process:       Python HTTP server (PID 7398)
+Port:          3000 (0.0.0.0)
+
+================================================================================
+                               ACCESS URLS
+================================================================================
+
+Service          URL                                 Status
+-------          ---                                 ------
+Backend API      http://3.25.170.226:8000            [OK] Healthy
+API Docs         http://3.25.170.226:8000/docs       [OK] Available
+Dashboard        http://3.25.170.226:3000            [OK] Running
+
+================================================================================
+                            PENDING ACTIONS
+================================================================================
+
+1. [ ] AWS Security Group: Open ports 8000 & 3000 for external access
+2. [ ] Domain Name: Configure A record pointing to 3.25.170.226
+3. [ ] SSL/TLS: Set up HTTPS with Let's Encrypt
+4. [ ] Redis: Install and configure for production
+5. [ ] Database: Migrate from SQLite to PostgreSQL
+6. [ ] Environment: Move secrets to AWS Secrets Manager
+
+================================================================================
+                            DEPLOYMENT COMMANDS
+================================================================================
+
+SSH Access:
+  ssh -i ~/.ssh/id_rsa_nemoclaw ubuntu@3.25.170.226
+
+Start Backend:
+  cd ~/nz-realestate-ai
+  source venv/bin/activate
+  uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+Start Frontend:
+  cd ~/nz-realestate-ai/frontend
+  python3 -m http.server 3000
+
+Docker Deployment:
+  cd ~/nz-realestate-ai
+  docker-compose up --build -d
+
+================================================================================
+                            BACKUP INFORMATION
+================================================================================
+
+Source Code:      Git repository at ~/nz-realestate-ai
+Backup Target:    https://github.com/aventadorvr-ux/enki-backup
+Build Report:     nemo-build-report.md (this document)
+Generated By:     Enki (main agent) + Nemo (Claude Code sub-agent)
+
+================================================================================
+                              RELATED RESOURCES
+================================================================================
+
+Enki Backup Repo:   https://github.com/aventadorvr-ux/enki-backup
+API Documentation:  http://3.25.170.226:8000/docs
+Dashboard:          http://3.25.170.226:3000
+
+================================================================================
+
+Build completed: 2026-03-19 04:31 UTC
+
+================================================================================
