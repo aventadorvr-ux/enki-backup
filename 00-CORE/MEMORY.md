@@ -88,9 +88,10 @@
 
 ## Communication Channels
 - **Primary**: Telegram (@AJDrip_bot) — realtime chat
-- **Email**: aventadorvr@gmail.com — configured for alerts/summaries
-  - Tool: msmtp + mailutils
-  - Provider: Gmail (app password configured)
-  - Use: `echo "message" | mail -s "subject" aventadorvr@gmail.com`
+- **Email**: aventadorvr@gmail.com — ✅ PERMANENTLY CONFIGURED
+  - Password stored in: `.msmtprc` (persists across sessions)
+  - Scripts read from config file automatically
+  - Use: `python3 02-EMAIL/email_smtp.py to@email.com "Subject" "Body" [attachment]`
+  - Configured: 2026-03-20 — DO NOT MODIFY
 
 ## Tags: #income-automation #telegram-primary #foundation-phase #security-hardened

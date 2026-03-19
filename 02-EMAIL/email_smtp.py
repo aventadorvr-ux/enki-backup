@@ -23,12 +23,40 @@ from email import encoders
 from pathlib import Path
 import getpass
 
-# SMTP Configuration - EDIT THESE OR SET ENVIRONMENT VARIABLES
-SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.gmail.com')
-SMTP_PORT = int(os.environ.get('SMTP_PORT', '587'))
-SMTP_USER = os.environ.get('SMTP_USER', 'aventadorvr@gmail.com')
-SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '')  # Use App Password for Gmail!
-SMTP_FROM = os.environ.get('SMTP_FROM', SMTP_USER)
+# SMTP Configuration - READ FROM .msmtprc CONFIG FILE
+def load_smtp_config():
+    """Load SMTP config from .msmtprc file."""
+    config = {
+        'host': 'smtp.gmail.com',
+        'port': 587,
+        'user': 'aventadorvr@gmail.com',
+        'password': '',
+        'from': 'aventadorvr@gmail.com'
+    }
+    try:
+        with open('/data/data/com.termux/files/home/.openclaw/workspace/.msmtprc', 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith('host '):
+                    config['host'] = line.split(' ', 1)[1]
+                elif line.startswith('port '):
+                    config['port'] = int(line.split(' ', 1)[1])
+                elif line.startswith('user '):
+                    config['user'] = line.split(' ', 1)[1]
+                elif line.startswith('password '):
+                    config['password'] = line.split(' ', 1)[1]
+                elif line.startswith('from '):
+                    config['from'] = line.split(' ', 1)[1]
+    except Exception as e:
+        print(f"⚠️  Could not read .msmtprc: {e}")
+    return config
+
+_cfg = load_smtp_config()
+SMTP_HOST = _cfg['host']
+SMTP_PORT = _cfg['port']
+SMTP_USER = _cfg['user']
+SMTP_PASSWORD = _cfg['password']
+SMTP_FROM = _cfg['from']
 
 def send_email_smtp(to_email, subject, body, attachment_path=None, password=None):
     """Send email using SMTP with TLS."""
