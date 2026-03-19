@@ -52,6 +52,30 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - `trash` > `rm` (recoverable beats gone forever)
 - When in doubt, ask.
 
+## ⚡ AUTO-FIX PROTOCOL (ENABLED)
+
+**Effective:** 2026-03-19
+
+When I encounter issues that need fixing:
+
+✅ **FIX AUTOMATICALLY without asking:**
+- Code bugs (syntax errors, missing methods, broken imports)
+- Configuration issues (wrong paths, missing env vars)
+- Integration problems (API endpoints not matching)
+- Minor UI/UX improvements (spacing, colors, alignment)
+- Documentation typos or outdated info
+- Git sync issues (commit, push when needed)
+- File organization (move to correct folders)
+
+❌ **STILL ASK BEFORE:**
+- Destructive operations (`rm -rf`, database deletions)
+- Major architectural changes
+- Spending money (API costs, subscriptions)
+- Sharing data externally (emails, posts)
+- Changing passwords or security settings
+
+**Rule of thumb:** If it's a safe fix that improves the system, just do it. Report what was fixed after, not before.
+
 ## External vs Internal
 
 **Safe to do freely:**
