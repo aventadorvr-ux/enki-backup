@@ -1,0 +1,12 @@
+# Gmail SMTP configuration for Enki
+account default
+host smtp.gmail.com
+port 587
+tls on
+tls_starttls on
+tls_certcheck off
+auth on
+user aventadorvr@gmail.com
+password qkcttkddkhjupyar
+from aventadorvr@gmail.com
+logfile /data/data/com.termux/files/home/.openclaw/workspace/.msmtp.log
