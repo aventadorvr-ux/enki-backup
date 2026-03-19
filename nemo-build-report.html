@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nemo Build Report - NZ Real Estate AI System</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; color: #333; }
+        h1 { color: #2c5282; border-bottom: 2px solid #4299e1; padding-bottom: 10px; }
+        h2 { color: #2b6cb0; margin-top: 30px; border-left: 4px solid #4299e1; padding-left: 15px; }
+        h3 { color: #4a5568; }
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+        th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; }
+        th { background: #ebf8ff; font-weight: 600; }
+        tr:nth-child(even) { background: #f7fafc; }
+        code { background: #edf2f7; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        pre { background: #2d3748; color: #e2e8f0; padding: 15px; border-radius: 8px; overflow-x: auto; }
+        .status-ok { color: #38a169; font-weight: bold; }
+        .status-warn { color: #d69e2e; font-weight: bold; }
+        .status-error { color: #e53e3e; font-weight: bold; }
+        .highlight { background: #fef5e7; padding: 15px; border-radius: 8px; border-left: 4px solid #f6ad55; }
+    </style>
+</head>
+<body>
+    <h1>🏡 Nemo Build Report - NZ Real Estate AI System</h1>
+    <p><strong>Complete Build Documentation & A Records</strong></p>
+    
+    <div class="highlight">
+        <strong>Generated:</strong> 2026-03-19 04:31 UTC<br>
+        <strong>Builder:</strong> Nemo (Claude Code sub-agent)<br>
+        <strong>Target:</strong> AWS EC2 Instance<br>
+        <strong>Repository:</strong> <a href="https://github.com/aventadorvr-ux/enki-backup">github.com/aventadorvr-ux/enki-backup</a>
+    </div>
+
+    <h2>📍 Infrastructure & A Records</h2>
+    
+    <h3>EC2 Instance Details</h3>
+    <table>
+        <tr><th>Property</th><th>Value</th></tr>
+        <tr><td><strong>Public IP</strong></td><td>3.25.170.226</td></tr>
+        <tr><td><strong>Private IP</strong></td><td>172.31.35.97</td></tr>
+        <tr><td><strong>Hostname</strong></td><td>ip-172-31-35-97.ap-southeast-2.compute.internal</td></tr>
+        <tr><td><strong>Region</strong></td><td>ap-southeast-2 (Sydney)</td></tr>
+        <tr><td><strong>OS</strong></td><td>Ubuntu 24.04 LTS (x86_64)</td></tr>
+        <tr><td><strong>Kernel</strong></td><td>6.17.0-1007-aws</td></tr>
+    </table>
+
+    <h3>Open Ports</h3>
+    <table>
+        <tr><th>Port</th><th>Protocol</th><th>Service</th><th>Process</th></tr>
+        <tr><td>22</td><td>TCP</td><td>SSH</td><td>sshd</td></tr>
+        <tr><td>8000</td><td>TCP</td><td>HTTP API</td><td>uvicorn</td></tr>
+        <tr><td>3000</td><td>TCP</td><td>HTTP Frontend</td><td>python3</td></tr>
+    </table>
+
+    <h2>🏗️ System Specifications</h2>
+    <table>
+        <tr><th>Resource</th><th>Total</th><th>Used</th><th>Available</th></tr>
+        <tr><td>Memory</td><td>7.6 GB</td><td>606 MB</td><td>7.0 GB</td></tr>
+        <tr><td>Disk (/)</td><td>96 GB</td><td>3.2 GB</td><td>93 GB (4%)</td></tr>
+        <tr><td>Uptime</td><td colspan="3">5 hours 36 minutes</td></tr>
+    </table>
+
+    <h2>🤖 5-Agent Architecture</h2>
+    
+    <h3>🎯 Lead Agent</h3>
+    <p><strong>Purpose:</strong> Lead qualification and routing</p>
+    <ul>
+        <li><code>qualify</code> - Rule-based lead scoring</li>
+        <li><code>qualify_ai</code> - AI-powered analysis</li>
+        <li><code>respond</code> - Auto-response templates</li>
+        <li><code>route</code> - Agent routing</li>
+    </ul>
+
+    <h3>✍️ Content Agent</h3>
+    <p><strong>Purpose:</strong> Property descriptions and marketing</p>
+    <ul>
+        <li><code>description</code> / <code>description_ai</code> - Generate listings</li>
+        <li><code>social</code> / <code>social_ai</code> - Social media posts</li>
+        <li><code>email</code> - Email campaigns</li>
+    </ul>
+
+    <h3>📅 Scheduling Agent</h3>
+    <p><strong>Purpose:</strong> Calendar and booking management</p>
+    <ul>
+        <li><code>book_showing</code> - Schedule property viewings</li>
+        <li><code>inspection</code> - Building inspections</li>
+        <li><code>availability</code> - Check agent availability</li>
+    </ul>
+
+    <h3>📊 Market Intelligence Agent</h3>
+    <p><strong>Purpose:</strong> CMAs and competitor tracking</p>
+    <ul>
+        <li><code>cma</code> - Comparative Market Analysis</li>
+        <li><code>track_competitor</code> - Monitor competitors</li>
+        <li><code>trends</code> - Market trend analysis</li>
+    </ul>
+
+    <h3>📄 Transaction Coordinator</h3>
+    <p><strong>Purpose:</strong> Deal coordination and compliance</p>
+    <ul>
+        <li><code>track_deadline</code> - Monitor deadlines</li>
+        <li><code>checklist</code> - Deal checklists</li>
+        <li><code>compliance</code> - Regulatory checks</li>
+    </ul>
+
+    <h2>🔌 API Endpoints</h2>
+    <p><strong>Base URL:</strong> <code>http://3.25.170.226:8000</code></p>
+    
+    <table>
+        <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+        <tr><td>GET</td><td>/</td><td>API info</td></tr>
+        <tr><td>GET</td><td>/health</td><td>Health check</td></tr>
+        <tr><td>GET</td><td>/docs</td><td>Swagger UI</td></tr>
+        <tr><td>GET</td><td>/api/v1/agents</td><td>List agents</td></tr>
+        <tr><td>POST</td><td>/api/v1/agents/{agent}/process</td><td>Send task</td></tr>
+    </table>
+
+    <h2>🌐 Access URLs</h2>
+    <table>
+        <tr><th>Service</th><th>URL</th><th>Status</th></tr>
+        <tr><td>Backend API</td><td>http://3.25.170.226:8000</td><td class="status-ok">✅ Healthy</td></tr>
+        <tr><td>API Docs</td><td>http://3.25.170.226:8000/docs</td><td class="status-ok">✅ Available</td></tr>
+        <tr><td>Dashboard</td><td>http://3.25.170.226:3000</td><td class="status-ok">✅ Running</td></tr>
+    </table>
+
+    <h2>⚠️ Pending Actions</h2>
+    <ol>
+        <li>AWS Security Group: Open ports 8000 & 3000 for external access</li>
+        <li>Domain Name: Configure A record pointing to 3.25.170.226</li>
+        <li>SSL/TLS: Set up HTTPS with Let's Encrypt</li>
+        <li>Redis: Install and configure for production</li>
+        <li>Database: Migrate from SQLite to PostgreSQL</li>
+    </ol>
+
+    <h2>📦 Backup Information</h2>
+    <p><strong>Repository:</strong> https://github.com/aventadorvr-ux/enki-backup</p>
+    <p><strong>Package:</strong> nemo-complete-build-package.tar.gz</p>
+    <p><strong>Generated By:</strong> Enki (main agent) + Nemo (Claude Code sub-agent)</p>
+
+    <hr>
+    <p><em>Build completed: 2026-03-19 04:31 UTC</em></p>
+</body>
+</html>
