@@ -1,0 +1,5 @@
+# OpenClaw Server Health Monitoring
+# Runs every 5 minutes
+*/5 * * * * /data/data/com.termux/files/home/.openclaw/workspace/scripts/healthcheck.sh >> /data/data/com.termux/files/home/.openclaw/workspace/logs/cron.log 2>&1
+# Log rotation - keep logs clean
+0 0 * * * find /data/data/com.termux/files/home/.openclaw/workspace/logs -name "*.log" -mtime +7 -delete
