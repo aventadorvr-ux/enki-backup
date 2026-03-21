@@ -311,3 +311,61 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+
+---
+
+# REAL-TIME MEMORY SYNC PROTOCOL (NEW - 2026-03-22)
+
+## User Requirement:
+> "From this point onwards... always has real time live historical synchronised knowledge"
+
+## Problem Solved:
+**Old behavior:** Conversations stayed in session context → lost when switching bots
+**New behavior:** Conversations written to memory files immediately → both bots can access
+
+## Protocol (MANDATORY):
+
+### During Active Conversation:
+**Every 10-15 minutes OR after significant decisions:**
+```
+Write conversation summary to memory/YYYY-MM-DD.md
+Include:
+- Key decisions made
+- Action items
+- User preferences expressed
+- Errors encountered and fixes
+- Context for other bot to pick up
+```
+
+### When Switching Bots:
+**The bot LEAVING must:**
+1. Write final summary to today's memory file
+2. Commit and push immediately
+3. Acknowledge: "Context saved for [other bot]"
+
+**The bot ARRIVING must:**
+1. Read memory/YYYY-MM-DD.md BEFORE responding
+2. Search memory for relevant context
+3. Acknowledge: "Picked up context from [other bot]"
+
+### Both Bots MUST:
+1. **SEARCH memory** before every response
+2. **WRITE memory** after significant interactions  
+3. **ACKNOWLEDGE** when loading context from other bot
+4. **NEVER** say "I don't know what you're talking about" — check memory first
+
+## Sync Verification:
+**User should NEVER hear:**
+- ❌ "I don't have that context"
+- ❌ "What were we discussing?"
+- ❌ "I wasn't there for that"
+
+**User SHOULD hear:**
+- ✅ "Picked up where we left off with [other bot]"
+- ✅ "Based on your conversation with [other bot]..."
+- ✅ "Continuing from [topic discussed with other bot]"
+
+## Failure Mode:
+If bot can't find context → **SEARCH MEMORY FIRST** → if still missing → ask user for clarification with specific reference to what was checked
+
+---
