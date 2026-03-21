@@ -1,4 +1,28 @@
-# NEMO Project Memory
+# Enki_Real_Estate_26 Project Memory
+
+**Previous Name:** NEMO (renamed 2026-03-22)
+**Current Name:** Enki_Real_Estate_26
+**Company:** Enki Agentic
+**Domain:** www.enkiagentic.si
+
+## Company Identity
+
+**Company Name:** Enki Agentic
+**Domain:** www.enkiagentic.si (registered)
+**Industry:** AI Agent Solutions
+**Market:** New Zealand (primary), expanding globally
+**Status:** Pre-launch, building NEMO platform
+
+### Brand Guidelines
+- **Primary Name:** Enki Agentic
+- **Short Form:** Enki
+- **Tagline:** AI-Powered Solutions for Real Estate
+- **Naming Convention:**
+  - `AGen_*` = Development/Internal agents
+  - `Nemo_*` = Product/Core business agents
+  - `Enki_*` = Company infrastructure agents
+
+---
 
 ## UX/UI Design Research - March 2026
 

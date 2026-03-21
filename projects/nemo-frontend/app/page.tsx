@@ -1,152 +1,96 @@
-import { Metadata } from "next";
-import { Search, TrendingUp, Shield, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
+import { SearchBar } from "@/components/search-bar";
+import { PropertyCard } from "@/components/property-card";
+import { Sparkles } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "NEMO - AI-Powered Real Estate Platform",
-  description: "Find, analyze, and close deals faster with AI-powered real estate tools for agents and investors.",
-};
+const featuredProperties = [
+  {
+    id: "1",
+    title: "Modern Villa with Ocean Views",
+    address: "123 Beach Road, Auckland",
+    price: 2450000,
+    beds: 4,
+    baths: 3,
+    sqft: 320,
+    imageUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+    isFeatured: true,
+    agentName: "Sarah Mitchell",
+  },
+  {
+    id: "2",
+    title: "Luxury Apartment in CBD",
+    address: "45 Queen Street, Auckland",
+    price: 1250000,
+    beds: 2,
+    baths: 2,
+    sqft: 95,
+    imageUrl: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800",
+    isNew: true,
+    agentName: "James Chen",
+  },
+  {
+    id: "3",
+    title: "Family Home with Garden",
+    address: "78 Mountain View, Wellington",
+    price: 980000,
+    beds: 3,
+    baths: 2,
+    sqft: 180,
+    imageUrl: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+    agentName: "Emma Wilson",
+  },
+];
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-background to-secondary-50 dark:from-primary-900/20 dark:via-background dark:to-secondary-900/20" />
-        <div className="absolute inset-0 glass-hero" />
-        
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge className="mb-6 px-4 py-1.5 text-sm glass-card" variant="secondary">
-              <Sparkles className="h-4 w-4 mr-2" />
-              Powered by AI
-            </Badge>
-            
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-              <span className="text-gradient">Find Your Perfect</span>
-              <br />
-              <span className="text-foreground">Property with AI</span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-              NEMO combines advanced AI with real-time market data to help agents 
-              and investors make smarter decisions faster.
-            </p>
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-secondary-50 pb-20 pt-32 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -right-40 -top-40 h-96 w-96 rounded-full bg-primary-200/30 blur-3xl dark:bg-primary-500/10" />
+          <div className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-secondary-200/30 blur-3xl dark:bg-secondary-500/10" />
+        </div>
 
-            {/* Search Bar */}
-            <Card className="max-w-3xl mx-auto glass-card border-0 shadow-2xl">
-              <CardContent className="p-4 md:p-6">
-                <div className="flex flex-col md:flex-row gap-3">
-                  <div className="flex-1 relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input
-                      placeholder="Enter location, suburb, or address..."
-                      className="pl-10 h-12 text-lg glass-card border-0"
-                    />
-                  </div>
-                  <div className="flex gap-2">
-                    <Button size="lg" className="h-12 px-8" asChild>
-                      <Link href="/search">Search</Link>
-                    </Button>
-                    <Button size="lg" variant="outline" className="h-12 px-6 glass-card">
-                      AI Valuation
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Quick Stats */}
-            <div className="flex flex-wrap justify-center gap-8 mt-12">
-              <div className="text-center">
-                <p className="text-3xl font-bold text-gradient">10K+</p>
-                <p className="text-sm text-muted-foreground">Properties Listed</p>
-              </div>
-              <div className="text-center">
-                <p className="text-3xl font-bold text-gradient">500+</p>
-                <p className="text-sm text-muted-foreground">Active Agents</p>
-              </div>
-              <div className="text-center">
-                <p className="text-3xl font-bold text-gradient">98%</p>
-                <p className="text-sm text-muted-foreground">AI Accuracy</p>
-              </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-100 px-4 py-2 text-sm font-medium text-primary-700 dark:bg-primary-900/30 dark:text-primary-300">
+              <Sparkles className="h-4 w-4" />
+              Powered by AI Agents
             </div>
-          </motion.div>
+
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+              Find Your Dream Home with AI Intelligence
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+              Search thousands of properties across New Zealand. Our AI agents help you find your perfect property.
+            </p>
+
+            <div className="mx-auto mt-10 max-w-3xl">
+              <SearchBar variant="hero" />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Why Choose NEMO?
+      {/* Featured Properties */}
+      <section className="bg-white py-20 dark:bg-slate-900">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+              Featured Properties
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Built specifically for the New Zealand real estate market with 
-              powerful AI tools to accelerate your success.
+            <p className="mt-2 text-gray-600 dark:text-gray-400">
+              Hand-picked properties selected by our AI for you
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="glass-card border-0">
-              <CardContent className="p-8">
-                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                  <Sparkles className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">AI-Powered Insights</h3>
-                <p className="text-muted-foreground">
-                  Get instant property valuations, market trends, and investment 
-                  recommendations powered by advanced machine learning.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card border-0">
-              <CardContent className="p-8">
-                <div className="h-12 w-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-6">
-                  <TrendingUp className="h-6 w-6 text-secondary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Market Intelligence</h3>
-                <p className="text-muted-foreground">
-                  Real-time data from TradeMe and NZ property databases to keep 
-                  you ahead of market movements.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card border-0">
-              <CardContent className="p-8">
-                <div className="h-12 w-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
-                  <Shield className="h-6 w-6 text-accent" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Agent Tools</h3>
-                <p className="text-muted-foreground">
-                  Automated listing descriptions, lead qualification, and 
-                  transaction coordination to close deals faster.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {featuredProperties.map((property) => (
+              <PropertyCard key={property.id} {...property} />
+            ))}
           </div>
         </div>
       </section>
     </div>
   );
 }
-on>
-    </div>
-  );
-}
-
-// Need to import motion
-import { motion } from "framer-motion";

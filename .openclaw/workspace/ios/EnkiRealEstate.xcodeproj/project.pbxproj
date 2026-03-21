@@ -1,0 +1,114 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* EnkiRealEstateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000011 /* EnkiRealEstateApp.swift */; };
+		A10000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000012 /* ContentView.swift */; };
+		A10000000000000000000003 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000013 /* Models.swift */; };
+		A10000000000000000000004 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000014 /* NetworkManager.swift */; };
+		A10000000000000000000005 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000015 /* KeychainManager.swift */; };
+		A10000000000000000000006 /* DataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000016 /* DataCache.swift */; };
+		A10000000000000000000007 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000017 /* NotificationManager.swift */; };
+		A10000000000000000000008 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000018 /* Theme.swift */; };
+		A10000000000000000000009 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000019 /* AuthView.swift */; };
+		A1000000000000000000000A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001A /* HomeView.swift */; };
+		A1000000000000000000000B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001B /* SearchView.swift */; };
+		A1000000000000000000000C /* PropertyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001C /* PropertyDetailView.swift */; };
+		A1000000000000000000000D /* AIFeaturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001D /* AIFeaturesView.swift */; };
+		A1000000000000000000000E /* AgentToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001E /* AgentToolsView.swift */; };
+		A1000000000000000000000F /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001F /* FavoritesView.swift */; };
+		A10000000000000000000010 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000020 /* ProfileView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A10000000000000000000000 /* EnkiRealEstate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnkiRealEstate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000000000000000000011 /* EnkiRealEstateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnkiRealEstateApp.swift; sourceTree = "<group>"; };
+		A10000000000000000000012 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A10000000000000000000013 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		A10000000000000000000014 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A10000000000000000000015 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		A10000000000000000000016 /* DataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCache.swift; sourceTree = "<group>"; };
+		A10000000000000000000017 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		A10000000000000000000018 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		A10000000000000000000019 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		A1000000000000000000001A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A1000000000000000000001B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		A1000000000000000000001C /* PropertyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailView.swift; sourceTree = "<group>"; };
+		A1000000000000000000001D /* AIFeaturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFeaturesView.swift; sourceTree = "<group>"; };
+		A1000000000000000000001E /* AgentToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentToolsView.swift; sourceTree = "<group>"; };
+		A1000000000000000000001F /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		A10000000000000000000020 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A100000000000000000000FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10000000000000000000F00 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000000000000000000000 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000000 /* EnkiRealEstate.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000F01 = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000F02 /* EnkiRealEstate */,
+				A10000000000000000000000 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A10000000000000000000F02 /* EnkiRealEstate */ = {
+			isa = PBXGroup;
+			children = (
+				A100000000000000000000FF /* Info.plist */,
+				A10000000000000000000F03 /* Sources */,
+			);
+			path = EnkiRealEstate;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000F03 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000F04 /* EnkiRealEstate */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000F04 /* EnkiRealEstate */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000011 /* EnkiRealEstateApp.swift */,
+				A10000000000000000000012 /* ContentView.swift */,
+				A10000000000000000000F05 /* Models */,
+				A10000000000000000000F06 /* Services */,
+				A10000000000000000000F07 /* Utils */,
+				A10000000000000000000F08 /* Views */,
+			);
+			path = EnkiRealEstate;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000000000000000000001 /* EnkiRealEstate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000F09 /* Build configuration list for PBXNativeTarget "EnkiRealEstate" */;
+			buildPhases = (
+				A10000000000000000000F0A /* Sources */,
+				A10000000000000000000

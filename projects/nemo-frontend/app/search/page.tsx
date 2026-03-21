@@ -1,100 +1,145 @@
-import { Metadata } from "next";
-import { MapSearch } from "@/components/map/MapSearch";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Search Properties - NEMO",
-  description: "Search properties with AI-powered filters and map view.",
-};
+import { useState } from "react";
+import { AdvancedSearchBar } from "@/components/search-bar";
+import { PropertyCard } from "@/components/property-card";
+import { PageTransition, StaggerContainer, StaggerItem } from "@/components/animations";
+import { MapPin, List, Grid3X3, SlidersHorizontal } from "lucide-react";
 
-// Mock properties data
-const mockProperties = [
+const searchResults = [
   {
     id: "1",
-    title: "Modern Villa in Ponsonby",
-    address: "123 Richmond Road, Ponsonby, Auckland",
-    price: 1850000,
-    bedrooms: 4,
-    bathrooms: 3,
-    sqft: 2400,
+    title: "Modern Villa with Ocean Views",
+    address: "123 Beach Road, Auckland",
+    price: 2450000,
+    beds: 4,
+    baths: 3,
+    sqft: 320,
     imageUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
-    type: "sale" as const,
-    featured: true,
-    aiEstimate: 1820000,
-    coordinates: { lat: -36.8565, lng: 174.7455 },
+    isFeatured: true,
+    agentName: "Sarah Mitchell",
   },
   {
     id: "2",
-    title: "Harbor View Apartment",
-    address: "45 Albert Street, Auckland CBD",
-    price: 950000,
-    bedrooms: 2,
-    bathrooms: 2,
-    sqft: 1200,
-    imageUrl: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
-    type: "sale" as const,
-    aiEstimate: 975000,
-    coordinates: { lat: -36.8485, lng: 174.7633 },
+    title: "Luxury Apartment in CBD",
+    address: "45 Queen Street, Auckland",
+    price: 1250000,
+    beds: 2,
+    baths: 2,
+    sqft: 95,
+    imageUrl: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800",
+    isNew: true,
+    agentName: "James Chen",
   },
   {
     id: "3",
-    title: "Family Home in Remuera",
-    address: "78 Remuera Road, Remuera",
-    price: 2200000,
-    bedrooms: 5,
-    bathrooms: 3,
-    sqft: 3200,
-    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
-    type: "sale" as const,
-    featured: true,
-    aiEstimate: 2150000,
-    coordinates: { lat: -36.8705, lng: 174.7875 },
+    title: "Family Home with Garden",
+    address: "78 Mountain View, Wellington",
+    price: 980000,
+    beds: 3,
+    baths: 2,
+    sqft: 180,
+    imageUrl: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800",
+    agentName: "Emma Wilson",
   },
   {
     id: "4",
-    title: "Investment Property in Grey Lynn",
-    address: "34 Tuarangi Road, Grey Lynn",
-    price: 1200000,
-    bedrooms: 3,
-    bathrooms: 2,
-    sqft: 1600,
-    imageUrl: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800",
-    type: "rent" as const,
-    aiEstimate: 1180000,
-    coordinates: { lat: -36.8615, lng: 174.7355 },
+    title: "Contemporary Townhouse",
+    address: "56 Park Avenue, Christchurch",
+    price: 850000,
+    beds: 3,
+    baths: 2,
+    sqft: 150,
+    imageUrl: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+    agentName: "David Brown",
   },
   {
     id: "5",
-    title: "Luxury Penthouse",
-    address: "101 Customs Street West, Viaduct Harbour",
-    price: 3500000,
-    bedrooms: 3,
-    bathrooms: 3,
-    sqft: 2800,
-    imageUrl: "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=800",
-    type: "sale" as const,
-    featured: true,
-    aiEstimate: 3400000,
-    coordinates: { lat: -36.8405, lng: 174.7555 },
+    title: "Waterfront Estate",
+    address: "99 Harbour View, Queenstown",
+    price: 3200000,
+    beds: 5,
+    baths: 4,
+    sqft: 450,
+    imageUrl: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800",
+    isFeatured: true,
+    agentName: "Lisa Taylor",
   },
   {
     id: "6",
-    title: "Townhouse in Parnell",
-    address: "256 Parnell Road, Parnell",
-    price: 1450000,
-    bedrooms: 3,
-    bathrooms: 2.5,
-    sqft: 1800,
-    imageUrl: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
-    type: "sale" as const,
-    aiEstimate: 1480000,
-    coordinates: { lat: -36.8555, lng: 174.7775 },
+    title: "Cozy Suburban Home",
+    address: "34 Maple Street, Hamilton",
+    price: 720000,
+    beds: 3,
+    baths: 1,
+    sqft: 140,
+    imageUrl: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800",
+    agentName: "Tom Anderson",
   },
 ];
 
 export default function SearchPage() {
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
   return (
-    <main className="h-[calc(100vh-4rem)]">
-      <MapSearch properties={mockProperties} />
-    </main>
+    <PageTransition>
+      <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
+        {/* Search Header */}
+        <div className="sticky top-0 z-10 border-b border-gray-200 bg-white/80 backdrop-blur-lg dark:border-gray-700 dark:bg-slate-900/80">
+          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+            <AdvancedSearchBar />
+          </div>
+        </div>
+
+        {/* Results Header */}
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
+                24 Properties Found
+              </h1>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                in Auckland, New Zealand
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <select className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm dark:border-gray-700 dark:bg-slate-800 dark:text-white">
+                <option>Sort by: Recommended</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest First</option>
+              </select>
+              <div className="flex rounded-lg border border-gray-200 bg-white p-1 dark:border-gray-700 dark:bg-slate-800">
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`rounded p-2 ${viewMode === "grid" ? "bg-primary-100 text-primary-600 dark:bg-primary-900/30" : "text-gray-400"}`}
+                >
+                  <Grid3X3 className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => setViewMode("list")}
+                  className={`rounded p-2 ${viewMode === "list" ? "bg-primary-100 text-primary-600 dark:bg-primary-900/30" : "text-gray-400"}`}
+                >
+                  <List className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Results Grid */}
+        <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+          <StaggerContainer
+            className={`grid gap-6 ${viewMode === "grid" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "grid-cols-1"}`}
+          >
+            {searchResults.map((property) => (
+              <StaggerItem key={property.id}>
+                <PropertyCard {...property} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </div>
+    </PageTransition>
   );
 }

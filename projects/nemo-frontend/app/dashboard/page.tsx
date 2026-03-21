@@ -1,57 +1,82 @@
-import { Metadata } from "next";
-import { KPICard, ActiveListingsCard, TotalLeadsCard, RevenueCard, ConversionRateCard } from "@/components/dashboard/KPICards";
-import { ActivityFeed, generateMockActivities } from "@/components/dashboard/ActivityFeed";
-import { AIChatInterface } from "@/components/ai/AIChatInterface";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Dashboard - NEMO",
-  description: "Agent dashboard with KPIs, activity feed, and AI assistant.",
-};
+import { DashboardStats, RecentActivity, QuickActions, PerformanceChart } from "@/components/dashboard-widgets";
+import { PageTransition } from "@/components/animations";
 
-const mockActivities = generateMockActivities(10);
+const recentActivities = [
+  {
+    id: "1",
+    type: "view" as const,
+    property: "Modern Villa with Ocean Views",
+    user: "John Smith",
+    timestamp: "2 minutes ago",
+  },
+  {
+    id: "2",
+    type: "inquiry" as const,
+    property: "Luxury Apartment in CBD",
+    user: "Sarah Johnson",
+    timestamp: "15 minutes ago",
+  },
+  {
+    id: "3",
+    type: "sale" as const,
+    property: "Family Home with Garden",
+    user: "Mike Wilson",
+    timestamp: "1 hour ago",
+    value: "$980,000",
+  },
+  {
+    id: "4",
+    type: "listing" as const,
+    property: "New Property Listed",
+    user: "You",
+    timestamp: "2 hours ago",
+  },
+];
+
+const performanceData = [
+  { label: "Jan", value: 45, color: "bg-primary-500" },
+  { label: "Feb", value: 62, color: "bg-primary-500" },
+  { label: "Mar", value: 58, color: "bg-primary-500" },
+  { label: "Apr", value: 75, color: "bg-primary-500" },
+  { label: "May", value: 82, color: "bg-secondary-500" },
+  { label: "Jun", value: 95, color: "bg-secondary-500" },
+];
 
 export default function DashboardPage() {
   return (
-    <main className="container mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back! Here's what's happening today.</p>
-      </div>
+    <PageTransition>
+      <div className="min-h-screen bg-gray-50 py-8 dark:bg-slate-900">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              Dashboard
+            </h1>
+            <p className="mt-2 text-gray-600 dark:text-gray-400">
+              Welcome back! Here is what is happening with your properties.
+            </p>
+          </div>
 
-      {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <ActiveListingsCard count={24} change="+3 this week" />
-        <TotalLeadsCard count={156} change="+12 this week" />
-        <RevenueCard amount="$128.5K" change="+8.2% vs last month" />
-        <ConversionRateCard rate="12.4%" change="+1.2% vs last month" />
-      </div>
+          {/* Stats Grid */}
+          <DashboardStats />
 
-      {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left Column - Activity Feed */}
-        <div className="lg:col-span-2 space-y-8">
-          <ActivityFeed activities={mockActivities} />
-          
-          {/* Quick Stats */}
-          <Card className="glass-card border-0">
-            <CardHeader>
-              <CardTitle>Monthly Performance</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-64 flex items-center justify-center text-muted-foreground">
-                <p>Chart component placeholder - integrate Recharts here</p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+          {/* Main Content */}
+          <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {/* Left Column */}
+            <div className="lg:col-span-2 space-y-6">
+              <PerformanceChart data={performanceData} />
+              <RecentActivity activities={recentActivities} />
+            </div>
 
-        {/* Right Column - AI Assistant */}
-        <div className="lg:col-span-1">
-          <AIChatInterface className="sticky top-8" />
+            {/* Right Column */}
+            <div className="space-y-6">
+              <QuickActions />
+            </div>
+          </div>
         </div>
       </div>
-    </main>
+    </PageTransition>
   );
 }
