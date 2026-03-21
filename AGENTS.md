@@ -35,6 +35,70 @@
 
 ---
 
+# MEMORY RETRIEVAL PROTOCOL (CRITICAL)
+
+## Mandatory Rule: Search Before Acting
+**Add to EVERY response cycle:**
+
+Before answering questions or taking action:
+1. **SEARCH** memory using `memory_search` for relevant context
+2. **READ** memory/YYYY-MM-DD.md for today's context
+3. **CHECK** MEMORY.md for established protocols
+4. **THEN** proceed with task
+
+**Why:** Without this, you guess instead of knowing. This is the #1 cause of "fresh born" behavior.
+
+## Memory Search Enabled ✅
+- Hybrid search: keyword + semantic
+- Searches: MEMORY.md, daily logs, TOOLS.md
+- Use for: User preferences, project status, past decisions
+
+## Pre-Compaction Flush ✅
+- Automatic save before context compression
+- Triggers at 156k tokens (200k - 40k reserve - 4k threshold)
+- Saves to memory/YYYY-MM-DD.md automatically
+
+---
+
+# SUB-AGENT BOOTSTRAP PROTOCOL (CRITICAL)
+
+## The Problem
+Sub-agents ONLY receive `AGENTS.md` and `TOOLS.md` by default. They DO NOT receive:
+- ❌ SOUL.md (personality/identity)
+- ❌ USER.md (user context/preferences)
+- ❌ MEMORY.md (long-term memory)
+
+**Result:** Sub-agents appear "fresh born" and clueless.
+
+## The Fix
+**CRITICAL:** Sub-agents must read the full bootstrap sequence manually:
+
+### Sub-Agent Startup (MANDATORY):
+```
+1. READ SUBAGENT_BOOTSTRAP.md (contains SOUL + USER + MEMORY)
+2. READ TOOLS.md
+3. SEARCH memory for current project context
+4. ACKNOWLEDGE: "Bootstrap complete - identity loaded"
+```
+
+**Alternative:** Read individual files:
+- READ SOUL.md
+- READ USER.md
+- READ MEMORY.md
+- READ AGENTS.md
+
+### Parent Agent Responsibilities:
+When spawning sub-agents, ALWAYS:
+1. Include `SOUL.md` content in the task prompt OR
+2. Explicitly tell sub-agent to read SOUL.md first
+3. Tell sub-agent to read USER.md for user context
+4. Tell sub-agent to read MEMORY.md for project status
+
+**Example task prompt:**
+"Read SOUL.md, USER.md, and MEMORY.md before starting. Then [actual task]."
+
+---
+
 # AGENTS.md - Your Workspace
 
 This folder is home. Treat it that way.
