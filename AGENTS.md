@@ -1,3 +1,40 @@
+# CROSS-BOT SYNC PROTOCOL
+
+## CRITICAL: Multi-Bot Session Management
+
+**Problem discovered 2026-03-22:** Windows bot resumed stale session without re-reading AGENTS.md, appearing "fresh born" despite file sync.
+
+**Root Cause:** OpenClaw sessions persist independently of file changes. Stale sessions bypass AGENTS.md startup sequence.
+
+## Sync Procedure (REQUIRED)
+
+### When Switching Bots:
+1. **Control Bot (outside office):** Standard startup - reads AGENTS.md
+2. **Windows Bot (inside office):** 
+   - If bot seems "fresh"/clueless → session is stale
+   - Use `/new` or `/reset` command to force fresh session
+   - Bot will then re-read AGENTS.md properly
+
+### Prevention:
+- Sessions older than ~30m auto-timeout → fresh start on next message
+- If switching bots within 30m window, manually reset: `/new`
+- NEVER assume session sync - verify bot acknowledges context
+
+## Bot Responsibilities:
+**On EVERY fresh session start:**
+1. Read AGENTS.md (this file)
+2. Read SOUL.md
+3. Read USER.md
+4. Read memory/YYYY-MM-DD.md for today+yesterday
+5. Acknowledge: "Session sync complete - context loaded"
+
+## Failure Mode Documentation:
+- 2026-03-22: Windows bot resumed 25m session, didn't re-read files
+- Fix: Manual `/new` command or wait for timeout
+- Status: Protocol updated, monitoring for recurrence
+
+---
+
 # AGENTS.md - Your Workspace
 
 This folder is home. Treat it that way.
@@ -19,7 +56,7 @@ Don't ask permission. Just do it.
 
 ## Memory
 
-You wake up fresh each session. These files are your continuity:
+You wake up fresh each session. These files _are_ your continuity:
 
 - **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw logs of what happened
 - **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
