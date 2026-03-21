@@ -361,3 +361,185 @@ cat: /proc/loadavg: Permission denied
 [2026-03-21 13:08:46] Network: connected
 [2026-03-21 13:08:47] Alert sent (HTTP 200)
 [2026-03-21 13:08:47] === Health Check Complete ===
+[2026-03-21 13:13:47] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 13:13:48] Resources: CPU:0% MEM:97% DISK:100%
+[2026-03-21 13:13:48] OpenClaw: running
+[2026-03-21 13:13:48] Network: connected
+[2026-03-21 13:13:49] Alert sent (HTTP 200)
+[2026-03-21 13:13:49] === Health Check Complete ===
+[2026-03-21 13:18:49] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 13:18:49] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 13:18:49] OpenClaw: running
+[2026-03-21 13:18:49] Network: connected
+[2026-03-21 13:18:51] Alert sent (HTTP 200)
+[2026-03-21 13:18:51] === Health Check Complete ===
+[2026-03-21 13:23:51] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 13:23:51] Resources: CPU:0% MEM:98% DISK:100%
+[2026-03-21 13:23:51] OpenClaw: running
+[2026-03-21 13:23:51] Network: connected
+[2026-03-21 13:23:53] Alert sent (HTTP 200)
+[2026-03-21 13:23:53] === Health Check Complete ===
+[2026-03-21 13:28:53] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 13:28:54] Resources: CPU:0% MEM:97% DISK:100%
+[2026-03-21 13:28:54] OpenClaw: running
+[2026-03-21 13:28:54] Network: connected
+[2026-03-21 13:28:55] Alert sent (HTTP 200)
+[2026-03-21 13:28:55] === Health Check Complete ===
+[2026-03-21 13:34:12] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 13:34:13] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 13:34:13] OpenClaw: running
+[2026-03-21 13:34:13] Network: connected
+[2026-03-21 13:34:14] Alert sent (HTTP 200)
+[2026-03-21 13:34:14] === Health Check Complete ===
+[2026-03-21 13:40:35] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 13:40:35] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 13:40:35] OpenClaw: running
+[2026-03-21 13:40:35] Network: connected
+[2026-03-21 13:40:37] Alert sent (HTTP 200)
+[2026-03-21 13:40:37] === Health Check Complete ===
+[2026-03-21 13:45:37] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 13:45:37] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 13:45:37] OpenClaw: running
+[2026-03-21 13:45:37] Network: connected
+[2026-03-21 13:45:39] Alert sent (HTTP 200)
+[2026-03-21 13:45:39] === Health Check Complete ===
+[2026-03-21 13:50:39] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 13:50:39] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 13:50:39] OpenClaw: running
+[2026-03-21 13:50:39] Network: connected
+[2026-03-21 13:50:40] Alert sent (HTTP 200)
+[2026-03-21 13:50:40] === Health Check Complete ===
+[2026-03-21 13:57:39] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 13:57:40] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 13:57:40] OpenClaw: running
+[2026-03-21 13:57:40] Network: connected
+[2026-03-21 13:57:41] Alert sent (HTTP 200)
+[2026-03-21 13:57:41] === Health Check Complete ===
+[2026-03-21 14:04:49] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:04:49] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 14:04:49] OpenClaw: running
+[2026-03-21 14:04:49] Network: connected
+[2026-03-21 14:04:50] Alert sent (HTTP 200)
+[2026-03-21 14:04:50] === Health Check Complete ===
+[2026-03-21 14:09:54] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:09:54] Resources: CPU:0% MEM:97% DISK:100%
+[2026-03-21 14:09:54] OpenClaw: running
+[2026-03-21 14:09:54] Network: connected
+[2026-03-21 14:09:55] Alert sent (HTTP 200)
+[2026-03-21 14:09:55] === Health Check Complete ===
+[2026-03-21 14:14:56] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:14:56] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 14:14:56] OpenClaw: running
+[2026-03-21 14:14:56] Network: connected
+[2026-03-21 14:14:57] Alert sent (HTTP 200)
+[2026-03-21 14:14:57] === Health Check Complete ===
+[2026-03-21 14:20:06] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:20:07] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 14:20:07] OpenClaw: running
+[2026-03-21 14:20:07] Network: connected
+[2026-03-21 14:20:08] Alert sent (HTTP 200)
+[2026-03-21 14:20:08] === Health Check Complete ===
+[2026-03-21 14:25:08] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:25:08] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 14:25:08] OpenClaw: running
+[2026-03-21 14:25:08] Network: connected
+[2026-03-21 14:25:09] Alert sent (HTTP 200)
+[2026-03-21 14:25:09] === Health Check Complete ===
+[2026-03-21 14:30:09] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:30:09] Resources: CPU:0% MEM:97% DISK:100%
+[2026-03-21 14:30:09] OpenClaw: running
+[2026-03-21 14:30:09] Network: connected
+[2026-03-21 14:30:10] Alert sent (HTTP 200)
+[2026-03-21 14:30:10] === Health Check Complete ===
+[2026-03-21 14:35:21] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:35:21] Resources: CPU:0% MEM:97% DISK:100%
+[2026-03-21 14:35:21] OpenClaw: running
+[2026-03-21 14:35:21] Network: connected
+[2026-03-21 14:35:22] Alert sent (HTTP 200)
+[2026-03-21 14:35:22] === Health Check Complete ===
+[2026-03-21 14:40:22] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:40:23] Resources: CPU:0% MEM:97% DISK:100%
+[2026-03-21 14:40:23] OpenClaw: running
+[2026-03-21 14:40:23] Network: connected
+[2026-03-21 14:40:23] Alert sent (HTTP 200)
+[2026-03-21 14:40:24] === Health Check Complete ===
+[2026-03-21 14:45:24] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:45:24] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 14:45:24] OpenClaw: running
+[2026-03-21 14:45:24] Network: connected
+[2026-03-21 14:45:25] Alert sent (HTTP 200)
+[2026-03-21 14:45:25] === Health Check Complete ===
+[2026-03-21 14:50:25] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:50:25] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 14:50:25] OpenClaw: running
+[2026-03-21 14:50:25] Network: connected
+[2026-03-21 14:50:26] Alert sent (HTTP 200)
+[2026-03-21 14:50:26] === Health Check Complete ===
+[2026-03-21 14:58:03] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 14:58:04] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 14:58:04] OpenClaw: running
+[2026-03-21 14:58:04] Network: connected
+[2026-03-21 14:58:05] Alert sent (HTTP 200)
+[2026-03-21 14:58:05] === Health Check Complete ===
+[2026-03-21 15:08:48] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 15:08:48] Resources: CPU:0% MEM:97% DISK:100%
+[2026-03-21 15:08:48] OpenClaw: running
+[2026-03-21 15:08:48] Network: connected
+[2026-03-21 15:08:50] Alert sent (HTTP 200)
+[2026-03-21 15:08:50] === Health Check Complete ===
+[2026-03-21 15:13:54] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 15:13:54] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 15:13:54] OpenClaw: running
+[2026-03-21 15:13:54] Network: connected
+[2026-03-21 15:13:56] Alert sent (HTTP 200)
+[2026-03-21 15:13:56] === Health Check Complete ===
+[2026-03-21 15:21:16] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 15:21:16] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 15:21:16] OpenClaw: running
+[2026-03-21 15:21:16] Network: connected
+[2026-03-21 15:21:17] Alert sent (HTTP 200)
+[2026-03-21 15:21:17] === Health Check Complete ===
+[2026-03-21 15:28:13] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 15:28:13] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 15:28:13] OpenClaw: running
+[2026-03-21 15:28:13] Network: connected
+[2026-03-21 15:28:14] Alert sent (HTTP 200)
+[2026-03-21 15:28:15] === Health Check Complete ===
+[2026-03-21 15:36:19] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 15:36:19] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 15:36:19] OpenClaw: running
+[2026-03-21 15:36:19] Network: connected
+[2026-03-21 15:36:20] Alert sent (HTTP 200)
+[2026-03-21 15:36:20] === Health Check Complete ===
+[2026-03-21 15:41:21] === Health Check Started ===
+cat: /proc/loadavg: Permission denied
+[2026-03-21 15:41:21] Resources: CPU:0% MEM:96% DISK:100%
+[2026-03-21 15:41:21] OpenClaw: running
+[2026-03-21 15:41:21] Network: connected
+[2026-03-21 15:41:22] Alert sent (HTTP 200)
+[2026-03-21 15:41:22] === Health Check Complete ===
