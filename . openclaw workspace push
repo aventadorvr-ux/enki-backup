@@ -1,0 +1,1 @@
+. git add -A && . git commit -m "Auto-backup: $(Get-Date -Format yyyy-MM-dd-HHmm -AsUTC)" && . git push origin master
