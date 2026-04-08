@@ -1,0 +1,199 @@
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+export default function HomePage() {
+  const [bedrooms, setBedrooms] = useState("3");
+  const [bathrooms, setBathrooms] = useState("2");
+  const [location, setLocation] = useState("Parnell, Auckland");
+  const [features, setFeatures] = useState("modern kitchen, garage, city views");
+  const [tone, setTone] = useState("professional");
+  const [showRaw, setShowRaw] = useState(false);
+
+  const [result, setResult] = useState<string | null>(null);
+  const [rawResponse, setRawResponse] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  async function runAI() {
+    setLoading(true);
+    setResult(null);
+    setRawResponse(null);
+    setError(null);
+
+    const bedNum = Number(bedrooms);
+    const bathNum = Number(bathrooms);
+
+    if (!Number.isFinite(bedNum) || bedNum <= 0) {
+      setError("Bedrooms must be a number greater than 0.");
+      setLoading(false);
+      return;
+    }
+
+    if (!Number.isFinite(bathNum) || bathNum <= 0) {
+      setError("Bathrooms must be a number greater than 0.");
+      setLoading(false);
+      return;
+    }
+
+    const payload = {
+      action: "description_ai",
+      bedrooms: bedNum,
+      bathrooms: bathNum,
+      location,
+      tone,
+      features: features.split(",").map((x) => x.trim()).filter(Boolean),
+    };
+
+    try {
+      const res = await fetch("/api/content-process", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const text = await res.text();
+      setRawResponse(text);
+
+      if (!res.ok) {
+        setError(`Backend returned HTTP ${res.status}: ${text}`);
+        return;
+      }
+
+      let data: any = null;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        setError(`Backend returned non-JSON response: ${text}`);
+        return;
+      }
+
+      const description =
+        data?.result?.description ??
+        data?.description ??
+        data?.result?.content ??
+        data?.content ??
+        data?.message ??
+        JSON.stringify(data, null, 2);
+
+      setResult(typeof description === "string" ? description : JSON.stringify(description, null, 2));
+    } catch (err: any) {
+      setError(err?.message || "Error calling backend");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-background text-foreground p-6">
+      <div className="mx-auto max-w-4xl space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold">Enki Agentic Content Generator</h1>
+          <p className="text-sm text-muted-foreground mt-2">
+            Generate a property description through the live NEMO backend.
+          </p>
+        </div>
+
+        <Card>
+          <CardContent className="p-6 space-y-4">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Bedrooms</label>
+                <input
+                  className="w-full rounded-md border px-3 py-2 bg-background"
+                  value={bedrooms}
+                  onChange={(e) => setBedrooms(e.target.value)}
+                  placeholder="3"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Bathrooms</label>
+                <input
+                  className="w-full rounded-md border px-3 py-2 bg-background"
+                  value={bathrooms}
+                  onChange={(e) => setBathrooms(e.target.value)}
+                  placeholder="2"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Location</label>
+              <input
+                className="w-full rounded-md border px-3 py-2 bg-background"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="Parnell, Auckland"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Features (comma separated)</label>
+              <textarea
+                className="w-full rounded-md border px-3 py-2 bg-background min-h-[120px]"
+                value={features}
+                onChange={(e) => setFeatures(e.target.value)}
+                placeholder="modern kitchen, garage, city views"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Tone</label>
+              <select
+                className="w-full rounded-md border px-3 py-2 bg-background"
+                value={tone}
+                onChange={(e) => setTone(e.target.value)}
+              >
+                <option value="professional">professional</option>
+                <option value="luxury">luxury</option>
+                <option value="friendly">friendly</option>
+              </select>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <Button onClick={runAI} disabled={loading}>
+                {loading ? "Generating..." : "Generate Description"}
+              </Button>
+
+              <Button type="button" variant="outline" onClick={() => setShowRaw((v) => !v)}>
+                {showRaw ? "Hide Debug Response" : "Show Debug Response"}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {error && (
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="font-semibold mb-2">Error</h2>
+              <pre className="whitespace-pre-wrap text-sm">{error}</pre>
+            </CardContent>
+          </Card>
+        )}
+
+        {result && (
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="font-semibold mb-2">Generated Description</h2>
+              <p className="whitespace-pre-line">{result}</p>
+            </CardContent>
+          </Card>
+        )}
+
+        {showRaw && rawResponse && (
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="font-semibold mb-2">Raw Backend Response</h2>
+              <pre className="whitespace-pre-wrap text-sm">{rawResponse}</pre>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    </div>
+  );
+}

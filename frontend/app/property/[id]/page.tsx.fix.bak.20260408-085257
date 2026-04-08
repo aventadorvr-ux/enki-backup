@@ -1,0 +1,61 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { PropertyDetailView } from "@/components/property/PropertyDetailView";
+
+const mockProperty = {
+  id: "1",
+  title: "Modern Villa in Ponsonby",
+  address: "Ponsonby, Auckland",
+  price: 1850000,
+  bedrooms: 4,
+  bathrooms: 3,
+  sqft: 2400,
+  features: ["Open plan", "Garage", "Modern kitchen"],
+};
+
+export default function PropertyDetailPage() {
+  const [intel, setIntel] = useState<any>(null);
+
+  useEffect(() => {
+    async function fetchIntel() {
+      try {
+        const res = await fetch("/api/market-intel", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "trends",
+            suburb: "Ponsonby",
+          }),
+        });
+
+        const data = await res.json();
+        setIntel(data.result);
+      } catch (e) {
+        console.error("Market intel failed", e);
+      }
+    }
+
+    fetchIntel();
+  }, []);
+
+  return (
+    <main className="p-6 space-y-6">
+      <PropertyDetailView property={mockProperty} />
+
+      {intel && (
+        <div className="border rounded p-4">
+          <h2 className="font-bold mb-2">Live Market Intelligence</h2>
+
+          <p>Median Price: ${intel.median_price}</p>
+          <p>Trend: {intel.trend}</p>
+          <p>Inventory: {intel.inventory_level}</p>
+
+          <p className="mt-2 text-sm text-gray-600">
+            {intel.ai_insights}
+          </p>
+        </div>
+      )}
+    </main>
+  );
+}
