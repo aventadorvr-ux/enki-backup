@@ -1,0 +1,58 @@
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+export default function HomePage() {
+  const [result, setResult] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  async function runAI() {
+    setLoading(true);
+    setResult(null);
+
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/v1/agents/content/process", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "description_ai",
+          bedrooms: 3,
+          bathrooms: 2,
+          location: "Parnell, Auckland",
+          features: ["modern kitchen", "garage", "city views"],
+        }),
+      });
+
+      const data = await res.json();
+      setResult(data.result.description);
+    } catch (err) {
+      setResult("Error calling backend");
+    }
+
+    setLoading(false);
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center p-6">
+      <h1 className="text-3xl font-bold mb-6">Frontend ↔ Backend Test</h1>
+
+      <Button onClick={runAI} className="mb-6">
+        Run AI Description
+      </Button>
+
+      {loading && <p>Loading...</p>}
+
+      {result && (
+        <Card className="max-w-2xl">
+          <CardContent className="p-6">
+            <p className="whitespace-pre-line">{result}</p>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}

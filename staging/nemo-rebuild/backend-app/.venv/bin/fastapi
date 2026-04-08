@@ -1,0 +1,6 @@
+#!/home/ubuntu/.openclaw/workspace/staging/nemo-rebuild/backend-app/.venv/bin/python3
+import sys
+from fastapi.cli import main
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(main())
