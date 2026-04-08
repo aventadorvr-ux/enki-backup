@@ -1,5 +1,0 @@
-{
-  "/property/[id]/page": "app/property/[id]/page.js",
-  "/api/market-intel/route": "app/api/market-intel/route.js",
-  "/api/content-process/route": "app/api/content-process/route.js"
-}
