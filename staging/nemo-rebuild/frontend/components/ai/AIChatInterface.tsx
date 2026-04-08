@@ -114,12 +114,12 @@ export function AIChatInterface({
       <CardHeader className="border-b border-border/50">
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-            <Bot className="h-5 w-5 text-foreground" />
+            <Bot className="h-5 w-5 text-white" />
           </div>
           <div>
             <CardTitle className="text-lg">{title}</CardTitle>
             <div className="flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
+              <div className="h-2 w-2 rounded-full bg-secondary text-white animate-pulse" />
               <span className="text-xs text-white/70">Online</span>
             </div>
           </div>
@@ -150,9 +150,9 @@ export function AIChatInterface({
                 )}
               >
                 {message.role === "user" ? (
-                  <User className="h-4 w-4 text-foreground" />
+                  <User className="h-4 w-4 text-white" />
                 ) : (
-                  <Bot className="h-4 w-4 text-foreground" />
+                  <Bot className="h-4 w-4 text-white" />
                 )}
               </div>
 
@@ -189,11 +189,11 @@ export function AIChatInterface({
             className="flex gap-3"
           >
             <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-              <Bot className="h-4 w-4 text-foreground" />
+              <Bot className="h-4 w-4 text-white" />
             </div>
             <div className="bg-muted rounded-2xl px-4 py-3 flex items-center gap-2">
               <Loader2 className="h-4 w-4 animate-spin" />
-              <span className="text-sm text-muted-foreground">Thinking...</span>
+              <span className="text-sm text-white/80">Thinking...</span>
             </div>
           </motion.div>
         )}
@@ -210,7 +210,7 @@ export function AIChatInterface({
                   key={suggestion}
                   variant="outline"
                   size="sm"
-                  className="text-xs glass-card"
+                  className="text-xs glass-card text-white hover:text-white"
                   onClick={() => handleSuggestionClick(suggestion)}
                 >
                   {suggestion}
@@ -229,7 +229,7 @@ export function AIChatInterface({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
-            className="flex-1 glass-card border-0"
+            className="flex-1 glass-card border-0 text-white placeholder:text-white/50"
             disabled={isLoading}
           />
           <Button

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "prop_1",
+    "title": "Modern Apartment in Ponsonby",
+    "suburb": "Ponsonby",
+    "price": 780000,
+    "bedrooms": 2,
+    "bathrooms": 1
+  },
+  {
+    "id": "prop_2",
+    "title": "Family Home in Mt Eden",
+    "suburb": "Mt Eden",
+    "price": 950000,
+    "bedrooms": 4,
+    "bathrooms": 2
+  },
+  {
+    "id": "prop_3",
+    "title": "Townhouse in Parnell",
+    "suburb": "Parnell",
+    "price": 820000,
+    "bedrooms": 3,
+    "bathrooms": 2
+  },
+  {
+    "id": "prop_4",
+    "title": "Starter Home in Manukau",
+    "suburb": "Manukau",
+    "price": 650000,
+    "bedrooms": 3,
+    "bathrooms": 1
+  }
+]
