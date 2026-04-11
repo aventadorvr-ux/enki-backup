@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-11T10:21:19.436Z",
+  "entries": {
+    "memory:memory/2026-03-18.md:1:20": {
+      "key": "memory:memory/2026-03-18.md:1:20",
+      "path": "memory/2026-03-18.md",
+      "startLine": 1,
+      "endLine": 20,
+      "source": "memory",
+      "snippet": "# Memory Log - 2026-03-18 ## Session Start - Time: 20:07 UTC - Context: Fresh session, read SOUL.md, MEMORY.md - Active project: NZ Real Estate AI Agent System ## New Instruction **Agent Timeout Management**: Monitor sub-agent timeouts closely and adjust timeframes based on actual task progress. Don't set-and-forget — calibrate to their pace. ## Active Tasks - [ ] Decide on investment path for NZ Real Estate AI project - [ ] Start Phase 1 (No-Code MVP validation) once path chosen ## API Keys Needed (from MEMORY.md) - [ ] Brave Search API (optional — js-fetch covers most needs) - [ ] OpenAI API (content/tool generation) - [ ] Hosting platform (Vercel/Fly/Railway) - [ ] Payment processor (",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.7388592319138154,
+      "maxScore": 0.7388592319138154,
+      "firstRecalledAt": "2026-04-11T06:49:40.826Z",
+      "lastRecalledAt": "2026-04-11T06:49:40.826Z",
+      "queryHashes": [
+        "1489318c212e"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "openai",
+        "soul.md",
+        "memory.md",
+        "sub-agent",
+        "set-and-forget",
+        "no-code",
+        "js-fetch",
+        "content/tool"
+      ]
+    },
+    "memory:memory/2026-03-19.md:1:41": {
+      "key": "memory:memory/2026-03-19.md:1:41",
+      "path": "memory/2026-03-19.md",
+      "startLine": 1,
+      "endLine": 41,
+      "source": "memory",
+      "snippet": "--- ## SESSION 2 - SYSTEM STABILIZATION & AGENT DEPLOYMENT **Time:** Thu 2026-03-19 14:17 - 17:19 UTC ### Critical Issues RESOLVED **Problem:** AWS server (3.25.170.226) experiencing repeated crashes, disconnections, instability **Root Cause:** Dev-grade infrastructure (Python http.server, nohup, no auto-restart) **Solution:** Production-grade stack deployment ### Infrastructure HARDENED (BULLETPROOF) - **nginx** deployed as reverse proxy (port 3000) - **systemd services** with auto-restart (5-second recovery) - **Health monitoring** every 60 seconds via cron - **AGen_OVAWatch** monitoring every 5 minutes - **Uptime:** 100% (17+ hours stable) ### Agent Fleet DEPLOYED (4/10 Active) | Ag",
+      "recallCount": 3,
+      "dailyCount": 0,
+      "totalScore": 2.577336865724772,
+      "maxScore": 0.8606032634867599,
+      "firstRecalledAt": "2026-04-11T10:18:14.804Z",
+      "lastRecalledAt": "2026-04-11T10:21:19.436Z",
+      "queryHashes": [
+        "7ca5acdcafb0",
+        "b143893013a2",
+        "f43328d58aed"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "3.25.170.226",
+        "dev-grade",
+        "http.server",
+        "auto-restart",
+        "production-grade",
+        "5-second",
+        "agen-ovawatch",
+        "4/10"
+      ]
+    },
+    "memory:memory/2026-03-19.md:32:74": {
+      "key": "memory:memory/2026-03-19.md:32:74",
+      "path": "memory/2026-03-19.md",
+      "startLine": 32,
+      "endLine": 74,
+      "source": "memory",
+      "snippet": "- **Phone:** +6421777516 - **Features:** Alarm sound, bypasses silent mode, instant delivery - **Status:** Tested ✅ Working ### Naming Convention ESTABLISHED - **AGen_*** - Development agents (UX, UI, BaCBuild, Legal) - **Nemo_*** - Core business agents - ***_OVAWatch - Oversight agents ### AGen_OVAWatch Role CLARIFIED **PRIMARY:** Oversee, integrate, and check work quality of ALL agents **SECONDARY:** Monitor system health **TERTIARY:** Alert on failures **Integration:** Systemd service, monitors all agents, real-time oversight ### Server Issues DOCUMENTED - Full post-mortem analysis completed - All fixes implemented and tested - Auto-restart verified working - Documentation: ENKI_DOCUME",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "totalScore": 1.66973248344739,
+      "maxScore": 0.834866241723695,
+      "firstRecalledAt": "2026-04-11T10:18:14.804Z",
+      "lastRecalledAt": "2026-04-11T10:18:28.830Z",
+      "queryHashes": [
+        "7ca5acdcafb0",
+        "b143893013a2"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "agen-ovawatch",
+        "real-time",
+        "post-mortem",
+        "auto-restart",
+        "enki-docume",
+        "phone",
+        "features",
+        "alarm"
+      ]
+    },
+    "memory:memory/2026-03-12.md:1:44": {
+      "key": "memory:memory/2026-03-12.md:1:44",
+      "path": "memory/2026-03-12.md",
+      "startLine": 1,
+      "endLine": 44,
+      "source": "memory",
+      "snippet": "# Memory Log - 2026-03-12 ## System Restoration & Tool Fixes ### GitHub Backup Restore - Successfully restored from https://github.com/aventadorvr-ux/enki-backup - All memory files, configs, and research recovered - System fully operational after OpenClaw restart ### Tool Capabilities Installed/Verified - **PDF Reader**: Installed `pdftotext` (poppler-utils v24.02.0) - **Chromium Browser**: v145.0.7632.116 - tested and working - **js-fetch.js**: Tested successfully on TradeMe Property - **OpenAI API**: Configured and active - **Git**: Local commits working (push needs auth setup) --- ## NZ Real Estate AI Agent Research ### PDF Received & Processed - File: `Sales_Presentation_NZ_Real_Es",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.8087820566380396,
+      "maxScore": 0.8087820566380396,
+      "firstRecalledAt": "2026-04-11T10:18:14.804Z",
+      "lastRecalledAt": "2026-04-11T10:18:14.804Z",
+      "queryHashes": [
+        "7ca5acdcafb0"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "backup",
+        "openai",
+        "installed/verified",
+        "poppler-utils",
+        "v24.02.0",
+        "v145.0.7632.116",
+        "js-fetch.js",
+        "sales-presentation-nz-real-es"
+      ]
+    },
+    "memory:memory/2026-03-12.md:35:66": {
+      "key": "memory:memory/2026-03-12.md:35:66",
+      "path": "memory/2026-03-12.md",
+      "startLine": 35,
+      "endLine": 66,
+      "source": "memory",
+      "snippet": "2. Content Agent - property descriptions, social posts 3. Scheduling Agent - calendar, showings, inspections 4. Market Intelligence Agent - competitor tracking, CMAs 5. Transaction Coordinator - deadlines, compliance **Investment Options:** - Full Build: $20k (10 weeks, enterprise) - Hybrid (Recommended): $8k (4 weeks, validate first) - DIY: $1k (6-8 weeks, bootstrap) **Revenue Potential:** $1M-$6M ARR Year 1 --- ## Files Updated - `MEMORY.md` - Added NZ Real Estate AI Agent as active project - `TOOLS.md` - Documented PDF reading and image analysis capabilities - `research/nz-real-estate-ai-agent.md` - Full research documentation - Git commit: afeec34 (local only, push needs auth) ---",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.802103233682978,
+      "maxScore": 0.802103233682978,
+      "firstRecalledAt": "2026-04-11T10:18:14.804Z",
+      "lastRecalledAt": "2026-04-11T10:18:14.804Z",
+      "queryHashes": [
+        "7ca5acdcafb0"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "6-8",
+        "memory.md",
+        "tools.md",
+        "content",
+        "property",
+        "descriptions",
+        "social",
+        "posts"
+      ]
+    },
+    "memory:memory/2026-03-19.md:100:123": {
+      "key": "memory:memory/2026-03-19.md:100:123",
+      "path": "memory/2026-03-19.md",
+      "startLine": 100,
+      "endLine": 123,
+      "source": "memory",
+      "snippet": "- Auto-restart: ENABLED (5-second recovery) - Monitoring: CONTINUOUS (60s intervals) - Alerts: ARMED (ntfy to phone) - Uptime: 100% (stable) - Next Action: Sleep authorized, system holds ### Queued for Future Deployment - AGen_DeepDiver (research agent - named but not built) - Market_Intel_Core - Scheduling_Drone - Transaction_Coord - Nemo_BaCBuild (backend constructor) - AGen_UX / AGen_UI ### Key Learnings - Dev-grade infrastructure causes production failures - systemd + auto-restart = bulletproof uptime - ntfy is perfect FREE solution for audible alerts - Token usage from agents is minimal vs development work - Clear decision authority prevents over/under stepping ### Memory Flush Trigg",
+      "recallCount": 2,
+      "dailyCount": 0,
+      "totalScore": 1.6998727989020268,
+      "maxScore": 0.8499363994510134,
+      "firstRecalledAt": "2026-04-11T10:18:28.830Z",
+      "lastRecalledAt": "2026-04-11T10:21:19.436Z",
+      "queryHashes": [
+        "b143893013a2",
+        "f43328d58aed"
+      ],
+      "recallDays": [
+        "2026-04-11"
+      ],
+      "conceptTags": [
+        "auto-restart",
+        "5-second",
+        "agen-deepdiver",
+        "market-intel-core",
+        "scheduling-drone",
+        "transaction-coord",
+        "nemo-bacbuild",
+        "agen-ux"
+      ]
+    }
+  }
+}

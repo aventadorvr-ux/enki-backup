@@ -1,0 +1,36 @@
+{
+  "role": "overseer",
+  "full_name": "AGen_OVAWatch",
+  "purpose": "Supervisor role for task oversight, verification, system health awareness, and cross-role coordination",
+  "category": "oversight",
+  "required_outputs": [
+    "overseer_scope.md",
+    "verification_notes.md",
+    "coordination_notes.md"
+  ],
+  "daily_folder": "/home/ubuntu/.openclaw/workspace/daily/2026-04-06/14_overseer",
+  "status": "FULL_POWER",
+  "authorization": {
+    "level": "full",
+    "tools": ["exec", "read", "write", "edit", "process", "subagents", "sessions_list", "sessions_send", "memory_search"],
+    "elevated": true,
+    "ask": "off",
+    "scope": "oversight_coordination"
+  },
+  "actions": [
+    "oversee_all_agents",
+    "verify_work_quality",
+    "coordinate_cross_role",
+    "monitor_system_health",
+    "alert_on_failures",
+    "generate_status_reports",
+    "escalate_critical_issues"
+  ],
+  "responsibilities": [
+    "PRIMARY: Oversee, integrate, and check work quality of ALL agents",
+    "SECONDARY: Monitor system health",
+    "TERTIARY: Alert on failures"
+  ],
+  "model": "openrouter/moonshotai/kimi-k2.5",
+  "max_tokens": 200000
+}

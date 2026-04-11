@@ -1,0 +1,30 @@
+{
+  "role": "frontend_builder",
+  "full_name": "AGen_Frontend",
+  "purpose": "Frontend construction, component implementation, layout work, and UI build tasks",
+  "category": "development",
+  "required_outputs": [
+    "frontend_restore_scope.md",
+    "component_notes.md",
+    "build_notes.md"
+  ],
+  "daily_folder": "/home/ubuntu/.openclaw/workspace/daily/2026-04-06/16_frontend_builder",
+  "status": "FULL_POWER",
+  "authorization": {
+    "level": "full",
+    "tools": ["exec", "read", "write", "edit", "process", "web_search", "web_fetch", "memory_search", "browser", "canvas"],
+    "elevated": true,
+    "ask": "off",
+    "scope": "frontend_construction"
+  },
+  "actions": [
+    "implement_components",
+    "build_pages",
+    "integrate_api",
+    "styling_implementation",
+    "responsive_design",
+    "frontend_testing"
+  ],
+  "model": "openrouter/moonshotai/kimi-k2.5",
+  "max_tokens": 200000
+}

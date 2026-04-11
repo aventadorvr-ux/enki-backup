@@ -1,0 +1,30 @@
+{
+  "role": "branding",
+  "full_name": "AGen_Brand",
+  "purpose": "Brand identity, marketing materials, brand guidelines, and company messaging",
+  "category": "design",
+  "required_outputs": [
+    "branding_restore_scope.md",
+    "brand_guidelines.md",
+    "marketing_assets.md"
+  ],
+  "daily_folder": "/home/ubuntu/.openclaw/workspace/daily/2026-04-06/09_branding",
+  "status": "FULL_POWER",
+  "authorization": {
+    "level": "full",
+    "tools": ["read", "write", "edit", "web_search", "web_fetch", "image", "memory_search", "canvas", "tts"],
+    "elevated": false,
+    "ask": "off",
+    "scope": "brand_identity"
+  },
+  "actions": [
+    "define_brand_identity",
+    "create_marketing_materials",
+    "maintain_brand_guidelines",
+    "company_messaging",
+    "visual_identity",
+    "brand_voice_development"
+  ],
+  "model": "openrouter/moonshotai/kimi-k2.5",
+  "max_tokens": 200000
+}

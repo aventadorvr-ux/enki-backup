@@ -47,11 +47,20 @@ Always aim to move the conversation forward toward a consultation or property vi
         if data.get("pre_approved"): score += 20
         if data.get("contact_method"): score += 10
         
-        return {
+        result = {
             "qualified": score >= 60,
             "score": score,
             "priority": "high" if score >= 80 else "medium" if score >= 60 else "low"
         }
+
+        memory.append("leads", {
+            "lead_id": data.get("lead_id", "unknown"),
+            "event": "qualify",
+            "data": result,
+            "timestamp": datetime.now().isoformat()
+        })
+
+        return result
     
     async def _qualify_ai(self, data: Dict) -> Dict:
         """AI-powered lead qualification with persona detection."""
@@ -125,13 +134,22 @@ Always aim to move the conversation forward toward a consultation or property vi
             last_interaction = history[-1]
             response_data["context"] = "Personalized based on previous interaction"
         
-        return {
+        result = {
             "response": response_data["response"],
             "type": inquiry_type,
             "next_step": response_data["next_step"],
             "priority": response_data["priority"],
             "lead_id": lead_id
         }
+
+        memory.append("leads", {
+            "lead_id": lead_id,
+            "event": "respond",
+            "data": result,
+            "timestamp": datetime.now().isoformat()
+        })
+
+        return result
     
     async def _chat(self, data: Dict) -> Dict:
         """Handle conversational interaction with memory."""
@@ -185,11 +203,20 @@ Always aim to move the conversation forward toward a consultation or property vi
             })
             memory.set(sentiment_key, history)
         
-        return {
+        result = {
             "sentiment_analysis": sentiment,
             "lead_id": lead_id,
             "recommended_action": self._get_action_from_sentiment(sentiment)
         }
+
+        memory.append("leads", {
+            "lead_id": lead_id,
+            "event": "sentiment",
+            "data": result,
+            "timestamp": datetime.now().isoformat()
+        })
+
+        return result
     
     def _get_action_from_sentiment(self, sentiment: Dict) -> str:
         """Determine next action based on sentiment."""

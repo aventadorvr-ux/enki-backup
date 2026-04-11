@@ -1,0 +1,10 @@
+{
+  "role": "integration",
+  "purpose": "Cross-layer integration of backend, frontend, roles, outputs, and system wiring",
+  "required_outputs": [
+    "integration_restore_scope.md",
+    "integration_notes.md",
+    "verification_notes.md"
+  ],
+  "daily_folder": "/home/ubuntu/.openclaw/workspace/daily/2026-04-06/17_integration"
+}

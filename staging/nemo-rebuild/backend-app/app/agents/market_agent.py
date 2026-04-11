@@ -74,7 +74,7 @@ class MarketIntelligenceAgent(BaseAgent):
         suburb = data.get("suburb", "")
         ai_analysis = ai_service.analyze_market(suburb)
         
-        return {
+        result = {
             "suburb": suburb,
             "median_price": 850000,
             "price_change": 2.5,
@@ -83,6 +83,15 @@ class MarketIntelligenceAgent(BaseAgent):
             "ai_insights": ai_analysis.get("analysis", ""),
             "analyzed_at": datetime.now().isoformat()
         }
+
+        memory.append("market", {
+            "suburb": suburb,
+            "event": "trends",
+            "data": result,
+            "timestamp": datetime.now().isoformat()
+        })
+
+        return result
     
     async def _market_report(self, data: Dict) -> Dict:
         """Generate comprehensive market report."""

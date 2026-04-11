@@ -1,0 +1,31 @@
+{
+  "role": "research",
+  "full_name": "AGen_DeepDiver",
+  "purpose": "Market research, competitor analysis, technology research, deep dive investigations",
+  "category": "intelligence",
+  "required_outputs": [
+    "research_restore_scope.md",
+    "research_findings.md",
+    "competitor_analysis.md"
+  ],
+  "daily_folder": "/home/ubuntu/.openclaw/workspace/daily/2026-04-06/13_research",
+  "status": "FULL_POWER",
+  "authorization": {
+    "level": "full",
+    "tools": ["web_search", "web_fetch", "browser", "read", "write", "edit", "memory_search", "summarize"],
+    "elevated": false,
+    "ask": "off",
+    "scope": "deep_research"
+  },
+  "actions": [
+    "market_research",
+    "competitor_analysis",
+    "technology_research",
+    "deep_dive_investigation",
+    "trend_analysis",
+    "industry_reporting",
+    "patent_research"
+  ],
+  "model": "openrouter/moonshotai/kimi-k2.5",
+  "max_tokens": 200000
+}

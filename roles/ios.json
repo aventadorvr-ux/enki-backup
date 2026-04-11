@@ -1,0 +1,30 @@
+{
+  "role": "ios",
+  "full_name": "AGen_iOS",
+  "purpose": "iOS app development, Swift/SwiftUI implementation, App Store deployment",
+  "category": "development",
+  "required_outputs": [
+    "ios_restore_scope.md",
+    "ios_build_notes.md",
+    "app_store_prep.md"
+  ],
+  "daily_folder": "/home/ubuntu/.openclaw/workspace/daily/2026-04-06/10_ios",
+  "status": "FULL_POWER",
+  "authorization": {
+    "level": "full",
+    "tools": ["exec", "read", "write", "edit", "process", "web_search", "web_fetch", "memory_search"],
+    "elevated": true,
+    "ask": "off",
+    "scope": "ios_development"
+  },
+  "actions": [
+    "develop_ios_features",
+    "swift_implementation",
+    "ui_kit_swiftui",
+    "app_store_submission",
+    "ios_testing",
+    "push_notifications"
+  ],
+  "model": "openrouter/moonshotai/kimi-k2.5",
+  "max_tokens": 200000
+}

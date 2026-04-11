@@ -1,0 +1,31 @@
+{
+  "role": "ux",
+  "full_name": "AGen_UX",
+  "purpose": "User experience design, user research, wireframing, interaction design, and UX workflow optimization",
+  "category": "design",
+  "required_outputs": [
+    "ux_restore_scope.md",
+    "user_research_notes.md",
+    "wireframe_specs.md"
+  ],
+  "daily_folder": "/home/ubuntu/.openclaw/workspace/daily/2026-04-06/07_ux",
+  "status": "FULL_POWER",
+  "authorization": {
+    "level": "full",
+    "tools": ["read", "write", "edit", "web_search", "web_fetch", "image", "memory_search", "canvas"],
+    "elevated": false,
+    "ask": "off",
+    "scope": "design_systems"
+  },
+  "actions": [
+    "conduct_user_research",
+    "create_wireframes",
+    "design_user_flows",
+    "ux_audits",
+    "accessibility_review",
+    "prototype_design",
+    "user_testing_plan"
+  ],
+  "model": "openrouter/moonshotai/kimi-k2.5",
+  "max_tokens": 200000
+}

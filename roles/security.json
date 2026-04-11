@@ -1,0 +1,31 @@
+{
+  "role": "security",
+  "full_name": "AGen_Security",
+  "purpose": "Security audits, authentication, authorization, SOC2 compliance, threat modeling",
+  "category": "compliance",
+  "required_outputs": [
+    "security_restore_scope.md",
+    "security_audit.md",
+    "compliance_report.md"
+  ],
+  "daily_folder": "/home/ubuntu/.openclaw/workspace/daily/2026-04-06/11_security",
+  "status": "FULL_POWER",
+  "authorization": {
+    "level": "full",
+    "tools": ["exec", "read", "write", "edit", "process", "web_search", "web_fetch", "memory_search", "browser"],
+    "elevated": true,
+    "ask": "off",
+    "scope": "security_audits"
+  },
+  "actions": [
+    "security_audits",
+    "auth_implementation",
+    "penetration_testing",
+    "soc2_compliance",
+    "threat_modeling",
+    "vulnerability_assessment",
+    "security_policy_creation"
+  ],
+  "model": "openrouter/moonshotai/kimi-k2.5",
+  "max_tokens": 200000
+}

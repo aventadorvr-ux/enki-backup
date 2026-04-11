@@ -1,0 +1,30 @@
+{
+  "role": "backend_builder",
+  "full_name": "Nemo_BaCBuild",
+  "purpose": "Backend construction, patching, route integration, service logic changes, and API implementation work",
+  "category": "development",
+  "required_outputs": [
+    "backend_restore_scope.md",
+    "patch_notes.md",
+    "build_notes.md"
+  ],
+  "daily_folder": "/home/ubuntu/.openclaw/workspace/daily/2026-04-06/15_backend_builder",
+  "status": "FULL_POWER",
+  "authorization": {
+    "level": "full",
+    "tools": ["exec", "read", "write", "edit", "process", "web_search", "web_fetch", "memory_search", "subagents"],
+    "elevated": true,
+    "ask": "off",
+    "scope": "backend_construction"
+  },
+  "actions": [
+    "implement_api_routes",
+    "build_services",
+    "database_integration",
+    "authentication_systems",
+    "testing_implementation",
+    "deployment_automation"
+  ],
+  "model": "openrouter/moonshotai/kimi-k2.5",
+  "max_tokens": 200000
+}

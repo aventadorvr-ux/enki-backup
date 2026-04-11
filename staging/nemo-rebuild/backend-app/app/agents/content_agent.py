@@ -63,14 +63,23 @@ class ContentAgent(BaseAgent):
         # Store for campaign tracking
         property_id = data.get("property_id", f"prop_{datetime.now().timestamp()}")
         content_key = f"content:{property_id}:descriptions"
-        descriptions = memory.get(content_key) or []
-        descriptions.append({
+
+        entry = {
+            "property_id": property_id,
+            "location": data.get("location", "Auckland"),
+            "bedrooms": data.get("bedrooms", 3),
+            "bathrooms": data.get("bathrooms", 2),
             "description": desc,
             "tone": data.get("tone", "professional"),
             "generated_at": datetime.now().isoformat()
-        })
+        }
+
+        descriptions = memory.get(content_key) or []
+        descriptions.append(entry)
         memory.set(content_key, descriptions)
-        
+
+        memory.append("content:history", entry)
+
         desc = desc.replace("-bedrooms", "-bedroom").replace("-bathrooms", "-bathroom")
 
         return {

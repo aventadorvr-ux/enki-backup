@@ -1,6 +1,50 @@
+# Dependencies
 node_modules/
+*/node_modules/
+*/*/node_modules/
+
+# Build outputs
 .next/
-.env
+dist/
+build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Logs
 *.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# Large files
+*.zip
 *.tar.gz
-.openclaw/restore-points/
+*.tar

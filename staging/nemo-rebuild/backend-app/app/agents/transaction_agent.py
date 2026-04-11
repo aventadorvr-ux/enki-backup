@@ -84,12 +84,21 @@ class TransactionCoordinatorAgent(BaseAgent):
         deadline_key = f"transaction:{transaction_id}:deadlines"
         memory.set(deadline_key, deadlines)
         
-        return {
+        result = {
             "transaction_id": transaction_id,
             "deadlines": deadlines,
             "critical_count": sum(1 for d in deadlines if d["priority"] == "critical"),
             "overdue_count": 0
         }
+
+        memory.append("transactions", {
+            "transaction_id": transaction_id,
+            "event": "deadline",
+            "data": result,
+            "timestamp": datetime.now().isoformat()
+        })
+
+        return result
     
     async def _generate_checklist(self, data: Dict) -> Dict:
         """Generate transaction checklist with progress tracking."""
@@ -137,12 +146,21 @@ class TransactionCoordinatorAgent(BaseAgent):
         checklist_key = f"transaction:{property_id}:checklist"
         memory.set(checklist_key, {"items": checklist, "progress": progress, "updated_at": datetime.now().isoformat()})
         
-        return {
+        result = {
             "property_id": property_id,
             "transaction_type": transaction_type,
             "checklist": checklist,
             "progress": progress
         }
+
+        memory.append("transactions", {
+            "transaction_id": property_id,
+            "event": "checklist",
+            "data": result,
+            "timestamp": datetime.now().isoformat()
+        })
+
+        return result
     
     async def _check_compliance(self, data: Dict) -> Dict:
         """Check compliance requirements for transaction."""
@@ -241,7 +259,7 @@ class TransactionCoordinatorAgent(BaseAgent):
             "assessed_at": datetime.now().isoformat()
         })
 
-        return {
+        result = {
             "transaction_id": transaction_id,
             "overall_risk": overall_risk,
             "risk_factors": risks,
@@ -249,6 +267,15 @@ class TransactionCoordinatorAgent(BaseAgent):
             "medium_risk_count": medium_risks,
             "recommendations": [r["mitigation"] for r in risks if r.get("level") in ["high", "medium"]]
         }
+
+        memory.append("transactions", {
+            "transaction_id": transaction_id,
+            "event": "risk_assessment",
+            "data": result,
+            "timestamp": datetime.now().isoformat()
+        })
+
+        return result
 
     async def _milestone_status(self, data: Dict) -> Dict:
         """Get current milestone status."""

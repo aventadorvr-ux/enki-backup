@@ -248,9 +248,9 @@ Respond with ONLY valid JSON:
         """Generate compelling property description using AI with intelligent fallback."""
         features = features or []
         
-        # Try AI first
+        # Try AI first, but only accept it if it meets quality and fidelity checks
         result = self._generate_ai_description(bedrooms, bathrooms, location, features, tone)
-        if result and len(result.split()) > 50:
+        if result:
             # Normalize awkward pluralized compound forms from the model
             result = re.sub(rf"\b{bedrooms}-bedrooms\b", f"{bedrooms}-bedroom", result, flags=re.IGNORECASE)
             result = re.sub(rf"\b{bathrooms}-bathrooms\b", f"{bathrooms}-bathroom", result, flags=re.IGNORECASE)
@@ -258,6 +258,8 @@ Respond with ONLY valid JSON:
             result = re.sub(rf"\b{bathrooms} bathrooms\b", f"{bathrooms}-bathroom", result, flags=re.IGNORECASE)
 
             result_lower = result.lower()
+            word_count = len(result.split())
+
             bedroom_ok = (
                 f"{bedrooms} bedroom" in result_lower or
                 f"{bedrooms}-bedroom" in result_lower or
@@ -270,7 +272,19 @@ Respond with ONLY valid JSON:
                 f"{bathrooms} bathrooms" in result_lower or
                 f"{bathrooms}-bathrooms" in result_lower
             )
-            if bedroom_ok and bathroom_ok:
+
+            banned_phrases = ["indulge", "relish", "exceptional property yours"]
+            banned_ok = not any(p in result_lower for p in banned_phrases)
+
+            feature_hits = 0
+            for feature in (features or [])[:3]:
+                f = str(feature).strip().lower()
+                if f and f in result_lower:
+                    feature_hits += 1
+
+            quality_ok = word_count >= 95 and banned_ok and feature_hits >= 1
+
+            if bedroom_ok and bathroom_ok and quality_ok:
                 return result
         
         # Fallback to enhanced template
@@ -299,49 +313,70 @@ Description:"""
         return self.generate(prompt, max_tokens=350, temperature=0.7)
     
     def _generate_enhanced_description(self, bedrooms, bathrooms, location, features, tone) -> str:
-        """Generate sophisticated description using templates and vocabulary banks."""
-        vocab = self.tone_vocabulary.get(tone, self.tone_vocabulary["professional"])
+        """Generate reliable, natural property description with deterministic fallback."""
+        features = features or []
         location_lower = location.lower()
-        
-        # Get location insight
+
         location_desc = "a sought-after location"
         for suburb, desc in self.location_insights.items():
             if suburb in location_lower:
                 location_desc = desc
                 break
-        
-        # Build description components
-        opener = random.choice(vocab["openers"])
-        adj1 = random.choice(vocab["adjectives"])
-        adj2 = random.choice([a for a in vocab["adjectives"] if a != adj1])
-        verb = random.choice(vocab["verbs"])
-        closing = random.choice(vocab["closings"])
-        
-        # Format features
-        feature_sentences = []
-        if features:
-            if len(features) >= 1:
-                feature_sentences.append(f"The {features[0]} provides both style and functionality.")
-            if len(features) >= 2:
-                feature_sentences.append(f"Additional highlights include {features[1]}.")
-            if len(features) >= 3:
-                feature_sentences.append(f"The property also boasts {features[2]}.")
-        
-        feature_text = " ".join(feature_sentences)
-        
-        # Construct description
-        bedroom_word = "bedroom" if bedrooms == 1 else "bedrooms"
-        bathroom_word = "bathroom" if bathrooms == 1 else "bathrooms"
-        
-        description = f"""{opener} {bedrooms}-{bedroom_word}, {bathrooms}-{bathroom_word} residence in {location} {verb} {adj1} living in {location_desc}.
 
-This {adj2} home {verb} generous accommodation perfect for modern living. {feature_text}
+        intro_map = {
+            "luxury": f"Set in {location}, this {bedrooms}-bedroom, {bathrooms}-bathroom home offers refined living in one of Auckland's most desirable areas.",
+            "friendly": f"Located in {location}, this {bedrooms}-bedroom, {bathrooms}-bathroom home offers an easy, comfortable lifestyle with plenty of everyday appeal.",
+            "modern": f"In the heart of {location}, this {bedrooms}-bedroom, {bathrooms}-bathroom home delivers a clean, modern layout designed for practical living.",
+            "professional": f"This {bedrooms}-bedroom, {bathrooms}-bathroom property in {location} presents a well-balanced opportunity for buyers seeking comfort, function, and location."
+        }
 
-Situated in {location_desc.split(' known')[0] if ' known' in location_desc else location_desc}, this property provides easy access to local amenities, schools, and transport links. The thoughtful layout maximizes space and natural light throughout.
+        second_map = {
+            "luxury": "The layout is designed for both entertaining and day-to-day ease, with well-proportioned spaces, strong indoor-outdoor flow, and a polished overall feel throughout.",
+            "friendly": "Inside, the home is welcoming and functional, with a layout that suits families, professionals, or buyers wanting flexibility, comfort, and easy everyday living.",
+            "modern": "Inside, the layout makes the most of natural light and flow, creating a home that feels both efficient and inviting, with flexible spaces that support contemporary living.",
+            "professional": "The home is thoughtfully arranged to support modern living, with practical spaces, good natural flow, and a layout that works well across a range of lifestyles."
+        }
 
-{closing}. Contact us today to arrange a viewing and make this exceptional property yours."""
-        
-        return description
+        outro_map = {
+            "luxury": f"Positioned in {location_desc}, this is a strong option for buyers who value quality, convenience, and lifestyle, with easy access to the area's cafes, amenities, and transport connections.",
+            "friendly": f"With its setting in {location_desc}, this home is well placed for enjoying local amenities, transport links, and the wider neighbourhood lifestyle.",
+            "modern": f"Set within {location_desc}, the property combines lifestyle appeal with easy access to everyday essentials, transport, and the best of the surrounding area.",
+            "professional": f"Located in {location_desc}, the property also benefits from convenient access to amenities, transport, and the broader advantages of the local area."
+        }
+
+        cta_map = {
+            "luxury": "Get in touch to arrange a private viewing.",
+            "friendly": "Contact us to arrange a viewing and see it for yourself.",
+            "modern": "Enquire today to learn more or book a viewing.",
+            "professional": "Contact us today for further information or to arrange a viewing."
+        }
+
+        tone_key = tone if tone in intro_map else "professional"
+
+        feature_phrases = [str(f).strip() for f in features if str(f).strip()]
+
+        feature_sentence = ""
+        if len(feature_phrases) == 1:
+            feature_sentence = f"Key highlight: {feature_phrases[0]}."
+        elif len(feature_phrases) == 2:
+            feature_sentence = f"Highlights include {feature_phrases[0]} and {feature_phrases[1]}."
+        elif len(feature_phrases) >= 3:
+            feature_sentence = "Highlights include " + ", ".join(feature_phrases[:-1]) + f", and {feature_phrases[-1]}."
+
+        parts = [
+            intro_map[tone_key],
+            second_map[tone_key],
+        ]
+
+        if feature_sentence:
+            parts.append(feature_sentence)
+
+        parts.extend([
+            outro_map[tone_key],
+            cta_map[tone_key],
+        ])
+
+        return "\n\n".join(parts)
     
     def generate_social_post(self, platform: str, bedrooms: int, location: str,
                             price: str = "", features: list = None,
