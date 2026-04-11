@@ -48,3 +48,6 @@ Thumbs.db
 *.zip
 *.tar.gz
 *.tar
+node_modules/
+*/node_modules/
+*/*/node_modules/
